@@ -3,9 +3,16 @@ import { GlobalStoreContext } from '../store'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
+import List from '@mui/material/List';
+import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import { Collapse } from '@mui/material';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -57,35 +64,53 @@ function ListCard(props) {
     }
 
     let cardElement =
+    <List>
+        <Divider />
         <ListItem
             disabled={store.isListNameEditActive}
             id={idNamePair._id}
             key={idNamePair._id}
-            sx={{ marginTop: '15px', display: 'flex', p: 1 }}
-            button
-            onClick={(event) => {
+            sx={{ marginTop: '0px', display: 'flex', pl: 1, pt: 0 , backgroundColor: "white"}}
+            /*onClick={(event) => {
                 handleLoadList(event, idNamePair._id)
-            }
-            }
+                }
+            }*/
+            button={false}
             style={{
-                fontSize: '48pt',
-                width: '100%'
+                fontSize: '20pt',
+                width: '100%',
             }}
         >
-                <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}</Box>
+
+                <Box sx={{ p: 0, flexGrow: 1 }}>{idNamePair.name}</Box>
                 <Box sx={{ p: 1 }}>
                     <IconButton onClick={handleToggleEdit} aria-label='edit'>
-                        <EditIcon style={{fontSize:'48pt'}} />
+                        <ThumbUpIcon style={{fontSize:'20pt'}} />
                     </IconButton>
+                    0
                 </Box>
+                <Box sx={{ p: 1 }}>
+                    <IconButton onClick={handleToggleEdit} aria-label='edit'>
+                        <ThumbDownIcon style={{fontSize:'20pt'}} />
+                    </IconButton>
+                    0
+                </Box>
+                <Divider />
                 <Box sx={{ p: 1 }}>
                     <IconButton onClick={(event) => {
                         handleDeleteList(event, idNamePair._id)
                     }} aria-label='delete'>
-                        <DeleteIcon style={{fontSize:'48pt'}} />
+                        <DeleteIcon style={{fontSize:'20pt'}} />
                     </IconButton>
                 </Box>
+                
         </ListItem>
+        <Collapse>
+        </Collapse>
+        <Box sx={{ p: 1, display: 'flex', flexGrow: 1, backgroundColor: "white" }}>
+            {idNamePair.name}
+        </Box>
+        </List>
 
     if (editActive) {
         cardElement =
