@@ -130,7 +130,7 @@ function ListCard(props) {
                         <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:100, overflow: 'auto'}}>
                         {
                             idNamePair.items.map((item, index) => (
-                                <Typography sx={{left: "5px",p:1}}variant="h6" component="h6">
+                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
                                     {index+1}. {item}
                                 </Typography>
                             ))
