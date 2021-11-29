@@ -4,9 +4,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
@@ -16,6 +14,7 @@ import { Collapse } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -117,19 +116,29 @@ function ListCard(props) {
         </ListItem>
         <Collapse in={open}>
                 <Grid container>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} sx={{p:1}}>
                         {
                             idNamePair.items.map((item, index) => (
-                                <Typography sx={{left: "50%"}}variant="h5" component="h5">
-                                    {index}. {item}
+                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
+                                    {index+1}. {item}
                                 </Typography>
                             ))
                         }
                     </Grid>
-                    <Grid item xs={6}>
-                        <TextField sx={{ flexGrow: 1 }} id="outlined-basic" variant="outlined" >
-
-                        </TextField>
+                    <Grid container direction={"row"} xs={6}>
+                        
+                        <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:100, overflow: 'auto'}}>
+                        {
+                            idNamePair.items.map((item, index) => (
+                                <Typography sx={{left: "5px",p:1}}variant="h6" component="h6">
+                                    {index+1}. {item}
+                                </Typography>
+                            ))
+                        }
+                        </Paper></Grid>
+                        <Grid item sx={{ flexGrow: 1,p:1 }}>                        
+                            <TextField fullWidth={true} label={"Add Comment"} id="outlined-basic" variant="outlined" ></TextField>
+                        </Grid>
                     </Grid>
                 </Grid>
         </Collapse>
