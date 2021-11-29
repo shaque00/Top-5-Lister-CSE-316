@@ -32,6 +32,7 @@ function ListCard(props) {
 
     const handleClick = () => {
         setOpen(!open);
+        // Call func to increment view count
       };
 
     function handleLoadList(event, id) {
@@ -114,14 +115,22 @@ function ListCard(props) {
         </ListItem>
         <Collapse in={open}>
                 // PUT THE COMMENTS AND THE ITEMS HERE
+                <List>
+
+                </List>
         </Collapse>
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>  
                 <Box sx={{ p: 1, display: 'flex', flexGrow: 1, backgroundColor: "white" }}>
                     asddsaf
                 </Box>
+                <Box>
+                    <Typography sx={{p: 1}}>
+                        Views: Get the views here
+                    </Typography>
+                </Box>
                 <Box sx={{ backgroundColor: "white" }}>
                     <IconButton onClick={handleClick} aria-label='delete'>
-                        <ExpandMoreIcon style={{fontSize:'20pt'}} />
+                        {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                     </IconButton>
                 </Box>
             </Box>
