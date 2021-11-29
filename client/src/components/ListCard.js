@@ -13,6 +13,8 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { Collapse } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -26,6 +28,11 @@ function ListCard(props) {
     const [editActive, setEditActive] = useState(false);
     const [text, setText] = useState("");
     const { idNamePair } = props;
+    const [open, setOpen] = useState(false); // Will help with opening/closing collapse
+
+    const handleClick = () => {
+        setOpen(!open);
+      };
 
     function handleLoadList(event, id) {
         if (!event.target.disabled) {
@@ -105,11 +112,19 @@ function ListCard(props) {
                 </Box>
                 
         </ListItem>
-        <Collapse>
+        <Collapse in={open}>
+                // PUT THE COMMENTS AND THE ITEMS HERE
         </Collapse>
-        <Box sx={{ p: 1, display: 'flex', flexGrow: 1, backgroundColor: "white" }}>
-            {idNamePair.name}
-        </Box>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>  
+                <Box sx={{ p: 1, display: 'flex', flexGrow: 1, backgroundColor: "white" }}>
+                    asddsaf
+                </Box>
+                <Box sx={{ backgroundColor: "white" }}>
+                    <IconButton onClick={handleClick} aria-label='delete'>
+                        <ExpandMoreIcon style={{fontSize:'20pt'}} />
+                    </IconButton>
+                </Box>
+            </Box>
         </List>
 
     if (editActive) {
