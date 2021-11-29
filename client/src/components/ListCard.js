@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import { Collapse } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import Grid from '@mui/material/Grid';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -31,14 +32,15 @@ function ListCard(props) {
     const [open, setOpen] = useState(false); // Will help with opening/closing collapse
 
     const handleClick = () => {
+        if (!open){
+            //store.addView(idNamePair._id);
+        }
         setOpen(!open);
-        // Call func to increment view count
       };
 
     function handleLoadList(event, id) {
         if (!event.target.disabled) {
             // CHANGE THE CURRENT LIST
-            store.setCurrentList(id);
         }
     }
 
@@ -95,13 +97,13 @@ function ListCard(props) {
                     <IconButton onClick={handleToggleEdit} aria-label='edit'>
                         <ThumbUpIcon style={{fontSize:'20pt'}} />
                     </IconButton>
-                    0
+                    {idNamePair.likes}
                 </Box>
                 <Box sx={{ p: 1 }}>
                     <IconButton onClick={handleToggleEdit} aria-label='edit'>
                         <ThumbDownIcon style={{fontSize:'20pt'}} />
                     </IconButton>
-                    0
+                    {idNamePair.dislikes}
                 </Box>
                 <Divider />
                 <Box sx={{ p: 1 }}>
@@ -114,10 +116,22 @@ function ListCard(props) {
                 
         </ListItem>
         <Collapse in={open}>
-                // PUT THE COMMENTS AND THE ITEMS HERE
-                <List>
+                <Grid container>
+                    <Grid item xs={6}>
+                        {
+                            idNamePair.items.map((item, index) => (
+                                <Typography sx={{left: "50%"}}variant="h5" component="h5">
+                                    {index}. {item}
+                                </Typography>
+                            ))
+                        }
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField sx={{ flexGrow: 1 }} id="outlined-basic" variant="outlined" >
 
-                </List>
+                        </TextField>
+                    </Grid>
+                </Grid>
         </Collapse>
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>  
                 <Box sx={{ p: 1, display: 'flex', flexGrow: 1, backgroundColor: "white" }}>
@@ -125,7 +139,7 @@ function ListCard(props) {
                 </Box>
                 <Box>
                     <Typography sx={{p: 1}}>
-                        Views: Get the views here
+                        Views: {idNamePair.views}
                     </Typography>
                 </Box>
                 <Box sx={{ backgroundColor: "white" }}>

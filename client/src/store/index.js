@@ -26,7 +26,15 @@ export const GlobalStoreActionType = {
     UNMARK_LIST_FOR_DELETION: "UNMARK_LIST_FOR_DELETION",
     SET_CURRENT_LIST: "SET_CURRENT_LIST",
     SET_ITEM_EDIT_ACTIVE: "SET_ITEM_EDIT_ACTIVE",
-    SET_LIST_NAME_EDIT_ACTIVE: "SET_LIST_NAME_EDIT_ACTIVE"
+    SET_LIST_NAME_EDIT_ACTIVE: "SET_LIST_NAME_EDIT_ACTIVE",
+    ADD_LIKE_DISLIKE: "ADD_LIKE_DISLIKE",
+    ADD_VIEW: "ADD_VIEW",
+    ADD_COMMENT: "ADD_COMMENT",
+    PUBLISH_LIST: "PUBLISH_LIST",
+    HOME: "HOME",
+    USER_LISTS: "USER_LISTS",
+    COMMUNITY_LISTS: "COMMUNITY_LISTS",
+    ALL_LISTS: "ALL_LISTS"
 }
 
 // WE'LL NEED THIS TO PROCESS TRANSACTIONS
@@ -42,7 +50,8 @@ function GlobalStoreContextProvider(props) {
         newListCounter: 0,
         listNameActive: false,
         itemActive: false,
-        listMarkedForDeletion: null
+        listMarkedForDeletion: null,
+        whichLists: null
     });
     const history = useHistory();
 
@@ -204,11 +213,18 @@ function GlobalStoreContextProvider(props) {
 
     // THIS FUNCTION CREATES A NEW LIST
     store.createNewList = async function () {
+        console.log("asd");
         let newListName = "Untitled" + store.newListCounter;
         let payload = {
             name: newListName,
             items: ["?", "?", "?", "?", "?"],
-            ownerEmail: auth.user.email
+            ownerEmail: auth.user.email,
+            likes: 0,
+            dislikes: 0,
+            views: 0,
+            date: null, 
+            comments: [],
+            ldMap: new Map()
         };
         console.log(auth.user.email);
         const response = await api.createTop5List(payload);
@@ -260,6 +276,16 @@ function GlobalStoreContextProvider(props) {
                 type: GlobalStoreActionType.MARK_LIST_FOR_DELETION,
                 payload: top5List
             });
+        }
+    }
+
+    store.addView = async function(id){
+        console.log("Here");
+        let response = await api.getTop5ListById(id);
+        if (response.data.success) {
+            let top5List = response.data.top5List;
+            top5List.views = Number(12344);
+            let a = await api.updateTop5ListById(top5List._id, top5List);
         }
     }
 

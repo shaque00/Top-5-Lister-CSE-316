@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import AuthContext from '../auth'
 import DeleteModal from './DeleteModal'
 import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 /*
     This React component lists all the top5 lists in the UI.
     
@@ -21,13 +22,14 @@ const HomeScreen = () => {
     }, []);
 
     function handleCreateNewList() {
+        console.log("Asd");
         store.createNewList();
     }
     let listCard = "";
     console.log(store.idNamePairs);
     if (store) {
         listCard = 
-            <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
+            <List sx={{top: '10%', width: '90%', left: '5%', bgcolor: 'background.paper' }}>
             {
                 store.idNamePairs.filter(pair => pair.email === auth.user.email).map((pair) => (
                     <ListCard
