@@ -213,7 +213,7 @@ function GlobalStoreContextProvider(props) {
 
     // THIS FUNCTION CREATES A NEW LIST
     store.createNewList = async function () {
-        console.log("asd");
+        console.log("In Store");
         let newListName = "Untitled" + store.newListCounter;
         let payload = {
             name: newListName,
@@ -222,8 +222,8 @@ function GlobalStoreContextProvider(props) {
             likes: 0,
             dislikes: 0,
             views: 0,
-            date: null, 
-            comments: [],
+            date: "edit", 
+            comments: ["?", "?", "?", "?", "?"],
             ldMap: new Map()
         };
         console.log(auth.user.email);

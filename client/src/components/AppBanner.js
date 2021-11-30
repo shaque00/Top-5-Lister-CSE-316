@@ -37,6 +37,11 @@ export default function AppBanner() {
         auth.logoutUser();
     }
 
+    const handleCreateNewList = () => {
+        console.log("Trying to crreaete a new list");
+        store.createNewList();
+    }
+
     const menuId = 'primary-search-account-menu';
     const loggedOutMenu = (
         <Menu
@@ -107,7 +112,7 @@ export default function AppBanner() {
                                 aria-label="account of current user"
                                 aria-controls={menuId}
                                 aria-haspopup="true"
-                                onClick={handleProfileMenuOpen}
+                                onClick={handleCreateNewList}
                                 color="inherit"
                             >
                                 <HomeIcon style = {{fontSize: "45px", color: "black" }}/>
