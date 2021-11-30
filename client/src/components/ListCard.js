@@ -78,9 +78,9 @@ function ListCard(props) {
     }
 
     function handleKeyEnter(event) {
-        console.log("asdf");
         if (event.code === "Enter") {
             console.log(text);
+            store.addComment(idNamePair._id, text);
         }
     }
 

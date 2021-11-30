@@ -101,7 +101,7 @@ export default function AppBanner() {
     }
 
     let tBar = "";
-    if (true){
+    if (auth.loggedIn){
         tBar = 
         <AppBar position="static" style={{ background: 'white' }}>
                     <Toolbar>
