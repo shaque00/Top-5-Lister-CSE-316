@@ -284,7 +284,8 @@ function GlobalStoreContextProvider(props) {
         let response = await api.getTop5ListById(id);
         if (response.data.success) {
             let top5List = response.data.top5List;
-            top5List.views = Number(12344);
+            console.log(top5List);
+            top5List.views = top5List.views + 1;
             let a = await api.updateTop5ListById(top5List._id, top5List);
         }
     }

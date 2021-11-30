@@ -10,7 +10,7 @@ const Top5ListSchema = new Schema(
         dislikes: {type: Number, required: true},
         views: {type: Number, required: true},
         date: {type: String, required: true},
-        commnets: {type: [String], required: true},
+        comments: {type: [String], required: true},
         ldMap: {type: Map, required: true}
     },
     { timestamps: true },

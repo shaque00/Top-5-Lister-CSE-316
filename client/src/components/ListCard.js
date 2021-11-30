@@ -30,12 +30,15 @@ function ListCard(props) {
     const { idNamePair } = props;
     const [open, setOpen] = useState(false); // Will help with opening/closing collapse
 
-    const handleClick = () => {
-        if (!open){
-            //store.addView(idNamePair._id);
-        }
+    function handleClick () {
         setOpen(!open);
+        addView()
       };
+
+    function addView(){
+        console.log("In addView");
+        store.addView(idNamePair._id);
+    }
 
     function handleLoadList(event, id) {
         if (!event.target.disabled) {
@@ -70,6 +73,12 @@ function ListCard(props) {
     }
     function handleUpdateText(event) {
         setText(event.target.value);
+    }
+
+    function handleKeyEnter(event){
+        if (event.code === "Enter") {
+            console.log(text);
+        }
     }
 
     let cardElement =
@@ -129,11 +138,15 @@ function ListCard(props) {
                         
                         <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:100, overflow: 'auto'}}>
                         {
-                            idNamePair.comments
+                            idNamePair.comments.map((item, index) => (
+                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
+                                    {index+1}. {item}
+                                </Typography>
+                            ))
                         }
                         </Paper></Grid>
                         <Grid item sx={{ flexGrow: 1,p:1 }}>                        
-                            <TextField fullWidth={true} label={"Add Comment"} id="outlined-basic" variant="outlined" ></TextField>
+                            <TextField onChange={handleUpdateText} onKeyEnter={handleKeyEnter} fullWidth={true} label={"Add Comment"} id="outlined-basic" variant="outlined" ></TextField>
                         </Grid>
                     </Grid>
                 </Grid>
