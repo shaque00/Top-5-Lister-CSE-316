@@ -298,12 +298,10 @@ function GlobalStoreContextProvider(props) {
             let top5List = response.data.top5List;
             console.log(top5List);
             top5List.views = top5List.views + 1;
-            let a = await api.updateTop5ListById(top5List._id, top5List);
-            if (a.data.success) {
-                storeReducer({
-                    type: GlobalStoreActionType.ADD_VIEW,
-                    payload: null
-                });
+            response = await api.updateTop5ListById(top5List._id, top5List);
+            if (response.data.success) {
+                store.loadIdNamePairs();
+                history.push("/");
             }
         }
     }
