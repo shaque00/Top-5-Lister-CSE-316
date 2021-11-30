@@ -162,6 +162,18 @@ function GlobalStoreContextProvider(props) {
                     listMarkedForDeletion: null
                 });
             }
+
+            case GlobalStoreActionType.ADD_VIEW: {
+                return setStore({
+                    idNamePairs: store.idNamePairs,
+                    currentList: null,
+                    newListCounter: store.newListCounter,
+                    isListNameEditActive: false,
+                    isItemEditActive: false,
+                    listMarkedForDeletion: null
+                });
+            } 
+
             default:
                 return store;
         }
@@ -287,6 +299,12 @@ function GlobalStoreContextProvider(props) {
             console.log(top5List);
             top5List.views = top5List.views + 1;
             let a = await api.updateTop5ListById(top5List._id, top5List);
+            if (a.data.success) {
+                storeReducer({
+                    type: GlobalStoreActionType.ADD_VIEW,
+                    payload: null
+                });
+            }
         }
     }
 

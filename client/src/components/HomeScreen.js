@@ -29,7 +29,7 @@ const HomeScreen = () => {
     console.log(store.idNamePairs);
     if (store) {
         listCard = 
-            <List sx={{top: '10%', width: '90%', left: '5%', bgcolor: 'background.paper' }}>
+            <List sx={{top: '1%', width: '90%', left: '5%', bgcolor: 'background.paper' }}>
             {
                 store.idNamePairs.filter(pair => pair.email === auth.user.email).map((pair) => (
                     <ListCard

@@ -32,7 +32,8 @@ function ListCard(props) {
 
     function handleClick () {
         setOpen(!open);
-        addView()
+        if (!open)
+            addView()
       };
 
     function addView(){
@@ -72,10 +73,12 @@ function ListCard(props) {
         }
     }
     function handleUpdateText(event) {
+        console.log("update text");
         setText(event.target.value);
     }
 
-    function handleKeyEnter(event){
+    function handleKeyEnter(event) {
+        console.log("asdf");
         if (event.code === "Enter") {
             console.log(text);
         }
@@ -138,7 +141,7 @@ function ListCard(props) {
                         
                         <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:100, overflow: 'auto'}}>
                         {
-                            idNamePair.comments.map((item, index) => (
+                            idNamePair.comments.reverse().map((item, index) => (
                                 <Typography sx={{left: "5px"}}variant="h5" component="h5">
                                     {index+1}. {item}
                                 </Typography>
@@ -146,7 +149,7 @@ function ListCard(props) {
                         }
                         </Paper></Grid>
                         <Grid item sx={{ flexGrow: 1,p:1 }}>                        
-                            <TextField onChange={handleUpdateText} onKeyEnter={handleKeyEnter} fullWidth={true} label={"Add Comment"} id="outlined-basic" variant="outlined" ></TextField>
+                            <TextField onChange={handleUpdateText} onKeyPress={handleKeyEnter} fullWidth={true} label={"Add Comment"} id="outlined-basic" variant="outlined" ></TextField>
                         </Grid>
                     </Grid>
                 </Grid>
