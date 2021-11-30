@@ -81,6 +81,8 @@ function ListCard(props) {
         if (event.code === "Enter") {
             console.log(text);
             store.addComment(idNamePair._id, text);
+            setText("");
+            event.target.value = "";
         }
     }
 
@@ -88,7 +90,7 @@ function ListCard(props) {
     <List>
         <Divider />
         <ListItem
-            disabled={store.isListNameEditActive}
+            disabled={store.isListNameEditActive} 
             id={idNamePair._id}
             key={idNamePair._id}
             sx={{ marginTop: '0px', display: 'flex', pl: 1, pt: 0 , backgroundColor: "white"}}
@@ -141,7 +143,7 @@ function ListCard(props) {
                         
                         <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:100, overflow: 'auto'}}>
                         {
-                            idNamePair.comments.reverse().map((item, index) => (
+                            idNamePair.comments.slice(0).reverse().map((item, index) => (
                                 <Typography sx={{left: "5px"}}variant="h5" component="h5">
                                     {index+1}. {item}
                                 </Typography>
