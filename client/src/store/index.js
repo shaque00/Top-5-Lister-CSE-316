@@ -212,6 +212,23 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
+    store.saveEdit = async function(text1, text2, text3, text4, text5, title){
+        console.log("in save edit");
+        store.currentList.name = title;
+        store.currentList.items[0] = text1;
+        store.currentList.items[1] = text2;
+        store.currentList.items[2] = text3;
+        store.currentList.items[3] = text4;
+        store.currentList.items[4] = text5;
+        store.updateCurrentList();
+        store.closeCurrentList();
+        store.loadIdNamePairs();
+    }
+
+    store.publishList = async function(){
+        
+    }
+
     // THIS FUNCTION PROCESSES CLOSING THE CURRENTLY LOADED LIST
     store.closeCurrentList = function () {
         storeReducer({

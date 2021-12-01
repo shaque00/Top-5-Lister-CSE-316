@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import Top5Item from './Top5Item.js'
 import List from '@mui/material/List';
 import { ListItem, Typography } from '@mui/material'
@@ -20,6 +20,67 @@ function WorkspaceScreen() {
     const { auth } = useContext(AuthContext);
     let {id} = useParams();
     console.log(id);
+
+    const [text1, setText1] = useState(store.currentList.items[0]);
+    const [text2, setText2] = useState(store.currentList.items[1]);
+    const [text3, setText3] = useState(store.currentList.items[2]);
+    const [text4, setText4] = useState(store.currentList.items[3]);
+    const [text5, setText5] = useState(store.currentList.items[4]);
+    const [title, setTitle] = useState(store.currentList.name);
+
+    function handleUpdateText1(event) {
+        console.log(event.target.value);
+        setText1(event.target.value);
+    }
+
+    function handleUpdateText2(event) {
+        console.log(event.target.value);
+        setText2(event.target.value);
+    }
+
+    function handleUpdateText3(event) {
+        console.log(event.target.value);
+        setText3(event.target.value);
+    }
+
+    function handleUpdateText4(event) {
+        console.log(event.target.value);
+        setText4(event.target.value);
+    }
+
+    function handleUpdateText5(event) {
+        console.log(event.target.value);
+        setText5(event.target.value);
+    }
+
+    function handleTitle(event){
+        console.log(event.target.value);
+        setTitle(event.target.value);
+    }
+
+    function readyForPublish(){
+        // Check if items and title all have names and are not empty
+        if (text1 === "" || text2 === "" || text3 === "" || text4 === "" || text5 === "" || title === ""){
+            return true;
+        }
+
+        // Now check if the title name isnt the same as a published title
+        let a = store.idNamePairs.filter(list => list.email === auth.user.email).filter(list => list.date !== "edit").filter(list => list.name === title);
+        console.log(a);
+        if (a.length !== 0){
+            return true;
+        }
+
+        return false;
+    }
+
+    function save(){
+        store.saveEdit(text1, text2, text3, text4, text5, title);
+    }
+
+    function publish(){
+        store.publishList();
+    }
 
     if (!store.idNamePairs){
         auth.logoutUser("","");
@@ -45,7 +106,7 @@ function WorkspaceScreen() {
             <List id="edit-items" sx={{ width: '100%', bgcolor: 'background.paper' }} style={{backgroundColor: "darkblue"}}>
                 <ListItem className="top5-item" sx={{ display: 'flex', p: 1 }} style={{ ontSize: '48pt', width: '100%' }}>
                     <TextField sx={{ p: 0 }}
-                        value="asd"
+                        defaultValue={store.currentList.items[0]}
                         style={{backgroundColor: "gold"}}
                         margin="normal"
                         required
@@ -56,12 +117,14 @@ function WorkspaceScreen() {
                         inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
+                        onChange={handleUpdateText1}
                     ></TextField>
                 </ListItem>
 
                 <ListItem className="top5-item" sx={{ display: 'flex', p: 1 }} style={{ ontSize: '48pt', width: '100%' }}>
                     <TextField sx={{ p: 0 }}
                         style={{backgroundColor: "gold"}}
+                        defaultValue={store.currentList.items[1]}
                         margin="normal"
                         required
                         fullWidth
@@ -71,12 +134,14 @@ function WorkspaceScreen() {
                         inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
+                        onChange={handleUpdateText2}
                     ></TextField>
                 </ListItem>
 
                 <ListItem className="top5-item" sx={{ display: 'flex', p: 1 }} style={{ ontSize: '48pt', width: '100%' }}>
                     <TextField sx={{ p: 0 }}
                         style={{backgroundColor: "gold"}}
+                        defaultValue={store.currentList.items[2]}
                         margin="normal"
                         required
                         fullWidth
@@ -86,12 +151,14 @@ function WorkspaceScreen() {
                         inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
+                        onChange={handleUpdateText3}
                     ></TextField>
                 </ListItem>
 
                 <ListItem className="top5-item" sx={{ display: 'flex', p: 1 }} style={{ ontSize: '48pt', width: '100%' }}>
                     <TextField sx={{ p: 0 }}
                         style={{backgroundColor: "gold"}}
+                        defaultValue={store.currentList.items[3]}
                         margin="normal"
                         required
                         fullWidth
@@ -101,12 +168,14 @@ function WorkspaceScreen() {
                         inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
+                        onChange={handleUpdateText4}
                     ></TextField>
                 </ListItem>
 
                 <ListItem className="top5-item" sx={{ display: 'flex', p: 1 }} style={{ ontSize: '48pt', width: '100%' }}>
                     <TextField sx={{ p: 0 }}
                         style={{backgroundColor: "gold"}}
+                        defaultValue={store.currentList.items[4]}
                         margin="normal"
                         required
                         fullWidth
@@ -116,19 +185,20 @@ function WorkspaceScreen() {
                         inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
+                        onChange={handleUpdateText5}
                     ></TextField>
                 </ListItem>
-                <Button variant="contained" style={{left:'80%'}}>
+                <Button onClick={save} variant="contained" style={{left:'80%', color:"black", backgroundColor:"white"}}>
                     Save
                 </Button>
-                <Button variant="contained" style={{left:'85%'}}>
+                <Button onClikc={publish} disabled={readyForPublish()} variant="contained" style={{left:'85%', color:"black", backgroundColor:"white"}}>
                     Publish
                 </Button>
             </List>
 
     return (
         <div id="top5-workspace">
-            <TextField defaultValue={store.currentList.items[0]} style={{backgroundColor: "white", width:'50%'}} margin="dense">
+            <TextField onChange={handleTitle} defaultValue={store.currentList.name} style={{backgroundColor: "white", width:'50%'}} margin="dense">
             </TextField>
             <div id="workspace-edit">
                 <div id="edit-numbering">
