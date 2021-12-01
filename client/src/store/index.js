@@ -226,7 +226,11 @@ function GlobalStoreContextProvider(props) {
     }
 
     store.publishList = async function(){
-        
+        console.log("publish");
+        store.currentList.date = new Date().toLocaleDateString();
+        store.updateCurrentList();
+        store.closeCurrentList();
+        store.loadIdNamePairs();
     }
 
     // THIS FUNCTION PROCESSES CLOSING THE CURRENTLY LOADED LIST

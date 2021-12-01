@@ -96,6 +96,12 @@ function ListCard(props) {
             Edit
         </Button>
 
+    if (idNamePair.date !== "edit"){
+        <Typography>
+            published: {idNamePair.date}
+        </Typography>
+    }
+
     let cardElement =
     <List>
         <Divider />

@@ -79,6 +79,7 @@ function WorkspaceScreen() {
     }
 
     function publish(){
+        console.log("local");
         store.publishList();
     }
 
