@@ -243,6 +243,10 @@ function GlobalStoreContextProvider(props) {
         console.log("test:", store.whichLists);
     }
 
+    store.setHome = function(){
+        store.setLists("");
+    }
+
     // THESE ARE THE FUNCTIONS THAT WILL UPDATE OUR STORE AND
     // DRIVE THE STATE OF THE APPLICATION. WE'LL CALL THESE IN 
     // RESPONSE TO EVENTS INSIDE OUR COMPONENTS.
