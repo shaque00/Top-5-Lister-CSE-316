@@ -277,7 +277,7 @@ function WorkspaceScreen() {
                 </Grid>
             </Grid>
                     <Box sx={{ flexGrow: 1 }}>
-                        <Button variant="contained" style={{ "min-height": "200px", top: "50px", left: "50px"}}>
+                        <Button variant="contained" style={{ "min-height": "100px", top: "10px", left: "50px"}}>
                             Save
                         </Button>
                         <Button variant="contained">
