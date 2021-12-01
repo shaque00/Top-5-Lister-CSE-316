@@ -221,8 +221,8 @@ function GlobalStoreContextProvider(props) {
         store.currentList.items[3] = text4;
         store.currentList.items[4] = text5;
         store.updateCurrentList();
-        store.closeCurrentList();
         store.loadIdNamePairs();
+        store.closeCurrentList();
     }
 
     store.publishList = async function(){
@@ -256,7 +256,7 @@ function GlobalStoreContextProvider(props) {
             dislikes: 0,
             views: 0,
             date: "edit", 
-            comments: ["?", "?", "?", "?", "?"],
+            comments: [],
             ldMap: new Map()
         };
         console.log(auth.user.email);

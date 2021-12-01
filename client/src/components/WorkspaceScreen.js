@@ -192,7 +192,7 @@ function WorkspaceScreen() {
                 <Button onClick={save} variant="contained" style={{left:'80%', color:"black", backgroundColor:"white"}}>
                     Save
                 </Button>
-                <Button onClikc={publish} disabled={readyForPublish()} variant="contained" style={{left:'85%', color:"black", backgroundColor:"white"}}>
+                <Button onClick={publish} disabled={readyForPublish()} variant="contained" style={{left:'85%', color:"black", backgroundColor:"white"}}>
                     Publish
                 </Button>
             </List>

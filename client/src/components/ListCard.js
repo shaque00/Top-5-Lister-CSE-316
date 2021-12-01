@@ -97,9 +97,10 @@ function ListCard(props) {
         </Button>
 
     if (idNamePair.date !== "edit"){
-        <Typography>
-            published: {idNamePair.date}
-        </Typography>
+        edPub = 
+            <Typography>
+                Published: {idNamePair.date}
+            </Typography>
     }
 
     let cardElement =
