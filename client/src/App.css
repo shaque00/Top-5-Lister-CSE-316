@@ -173,13 +173,8 @@ body {
 .unselected-list-card {
   font-size: 18pt;
   margin: 10px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 25px;
-}
-
-.list-card{
-  top: 5px;
-  padding: 15px;
 }
 
 .list-card:aria-disabled,
@@ -214,9 +209,9 @@ body {
 #workspace-edit {
   position: absolute;
   left: 0%;
-  top: 0%;
+  top:10%;
   width: 100%;
-  height: 100%;
+  height:70%;
   background-color: darkblue;
 }
 

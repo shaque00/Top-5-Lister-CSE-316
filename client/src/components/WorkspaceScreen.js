@@ -53,7 +53,7 @@ function WorkspaceScreen() {
                         name="name"
                         autoComplete="Top 5 Item Name"
                         className='list-card'
-                        inputProps={{style: {fontSize: 48}}}
+                        inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
                     ></TextField>
@@ -68,7 +68,7 @@ function WorkspaceScreen() {
                         name="name"
                         autoComplete="Top 5 Item Name"
                         className='list-card'
-                        inputProps={{style: {fontSize: 48}}}
+                        inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
                     ></TextField>
@@ -83,7 +83,7 @@ function WorkspaceScreen() {
                         name="name"
                         autoComplete="Top 5 Item Name"
                         className='list-card'
-                        inputProps={{style: {fontSize: 48}}}
+                        inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
                     ></TextField>
@@ -98,7 +98,7 @@ function WorkspaceScreen() {
                         name="name"
                         autoComplete="Top 5 Item Name"
                         className='list-card'
-                        inputProps={{style: {fontSize: 48}}}
+                        inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
                     ></TextField>
@@ -113,177 +113,34 @@ function WorkspaceScreen() {
                         name="name"
                         autoComplete="Top 5 Item Name"
                         className='list-card'
-                        inputProps={{style: {fontSize: 48}}}
+                        inputProps={{style: {fontSize: 30}}}
                         InputLabelProps={{style: {fontSize: 24}}}
                         autoFocus
                     ></TextField>
                 </ListItem>
-                
+                <Button variant="contained" style={{left:'80%'}}>
+                    Save
+                </Button>
+                <Button variant="contained" style={{left:'85%'}}>
+                    Publish
+                </Button>
             </List>
 
     return (
-        /*<div id="top5-workspace">
+        <div id="top5-workspace">
+            <TextField defaultValue={store.currentList.items[0]} style={{backgroundColor: "white", width:'50%'}} margin="dense">
+            </TextField>
             <div id="workspace-edit">
                 <div id="edit-numbering">
-                    <div className="item-number"><Typography sx={{p:3, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">1.</Typography></div>
-                    <div className="item-number"><Typography sx={{p:3, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">2.</Typography></div>
-                    <div className="item-number"><Typography sx={{p:3, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">3.</Typography></div>
-                    <div className="item-number"><Typography sx={{p:3, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">4.</Typography></div>
-                    <div className="item-number"><Typography sx={{p:3, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">5.</Typography></div>
-                    <div className="item-number"><Typography sx={{p:3, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">5.</Typography></div>
+                    <div className="item-number"><Typography sx={{p:0, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">1.</Typography></div>
+                    <div className="item-number"><Typography sx={{p:0, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">2.</Typography></div>
+                    <div className="item-number"><Typography sx={{p:0, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">3.</Typography></div>
+                    <div className="item-number"><Typography sx={{p:0, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">4.</Typography></div>
+                    <div className="item-number"><Typography sx={{p:0, pl:10, pr:10, borderRadius: 5}} style={{backgroundColor:"gold"}} variant="h3">5.</Typography></div>
                 </div>
                 {editItems}
-            </div>
-        </div>*/
-        <div id="top5-workspace">
-            <Grid container direction={'column'} spacing={0}>
-                <Grid item xs={2}>
-                    <TextField
-                        style={{backgroundColor: "white", width: "45%"}}
-                        margin="dense"
-                    >
-                    </TextField>
-                </Grid>
-
                 
-                <Grid container direction={'row'} spacing={2}>
-                    <Grid item xs={2}>
-                    <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            disabled={true}
-                            value="1."
-                            inputProps={{min: 0, style: { textAlign: 'center', fontSize: 30 }}}
-                            >
-                        </TextField>
-                    </Grid>
-
-                    <Grid item xs={10}>
-                        <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            inputProps={{style: {fontSize: 30}}}
-                            >
-                        </TextField>
-                    </Grid>
-                </Grid>
-
-                <Grid container direction={'row'} spacing={2}>
-                    <Grid item xs={2}>
-                    <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            disabled={true}
-                            value="2."
-                            inputProps={{min: 0, style: { textAlign: 'center', fontSize: 30 }}}
-                            >
-                        </TextField>
-                    </Grid>
-
-                    <Grid item xs={10}>
-                        <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            inputProps={{style: {fontSize: 30}}}
-                            >
-                        </TextField>
-                    </Grid>
-                </Grid>
-
-                <Grid container direction={'row'} spacing={2}>
-                    <Grid item xs={2}>
-                    <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            disabled={true}
-                            value="3."
-                            inputProps={{min: 0, style: { textAlign: 'center', fontSize: 30 }}}
-                            >
-                        </TextField>
-                    </Grid>
-
-                    <Grid item xs={10}>
-                        <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            inputProps={{style: {fontSize: 30}}}
-                            >
-                        </TextField>
-                    </Grid>
-                </Grid>
-
-                <Grid container direction={'row'} spacing={2}>
-                    <Grid item xs={2}>
-                    <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            disabled={true}
-                            value="4."
-                            inputProps={{min: 0, style: { textAlign: 'center', fontSize: 30 }}}
-                            >
-                        </TextField>
-                    </Grid>
-
-                    <Grid item xs={10}>
-                        <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            inputProps={{style: {fontSize: 30}}}
-                            >
-                        </TextField>
-                    </Grid>
-                </Grid>
-
-                <Grid container direction={'row'} spacing={2}>
-                    <Grid item xs={2}>
-                    <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            disabled={true}
-                            value="5."
-                            inputProps={{min: 0, style: { textAlign: 'center', fontSize: 30 }}}
-                            >
-                        </TextField>
-                    </Grid>
-
-                    <Grid item xs={10}>
-                        <TextField
-                            style={{backgroundColor: "gold", width: "98%"}}
-                            margin="dense"
-                            variant="outlined"
-                            sx={{borderRadius: "25px"}}
-                            inputProps={{style: {fontSize: 30}}}
-                            >
-                        </TextField>
-                    </Grid>
-                </Grid>
-            </Grid>
-                    <Box sx={{ flexGrow: 1 }}>
-                        <Button variant="contained" style={{ "min-height": "100px", top: "10px", left: "50px"}}>
-                            Save
-                        </Button>
-                        <Button variant="contained">
-                            Publish
-                        </Button>
-                    </Box>
+            </div>
         </div>
     )
 }
