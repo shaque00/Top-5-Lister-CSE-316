@@ -15,6 +15,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -85,6 +86,15 @@ function ListCard(props) {
             event.target.value = "";
         }
     }
+
+    function handleEdit(){
+        store.setCurrentList(idNamePair._id);
+    }
+
+    let edPub = 
+        <Button onClick={handleEdit} style={{color: "red", textDecoration: "underline"}} variant="text">
+            Edit
+        </Button>
 
     let cardElement =
     <List>
@@ -158,7 +168,7 @@ function ListCard(props) {
         </Collapse>
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>  
                 <Box sx={{ p: 1, display: 'flex', flexGrow: 1, backgroundColor: "white" }}>
-                    asddsaf
+                    {edPub}
                 </Box>
                 <Box>
                     <Typography sx={{p: 1}}>

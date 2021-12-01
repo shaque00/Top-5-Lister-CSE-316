@@ -120,10 +120,10 @@ body {
 #top5-workspace {
   position: absolute;
   left: 0%;
-  top: 10%;
+  top: 12.7%;
   width: 100%;
-  height: 80%;
-  background-color: var(--swatch-accent);
+  height: 78%;
+  background-color: darkblue;
 }
 
 #top5-statusbar {
@@ -177,6 +177,11 @@ body {
   border-radius: 25px;
 }
 
+.list-card{
+  top: 5px;
+  padding: 15px;
+}
+
 .list-card:aria-disabled,
 .list-card[aria-disabled] {
   border: 1px solid #999999;
@@ -212,6 +217,7 @@ body {
   top: 0%;
   width: 100%;
   height: 100%;
+  background-color: darkblue;
 }
 
 #edit-numbering {
@@ -220,7 +226,7 @@ body {
   top: 0%;
   width: 20%;
   height: 100%;
-  background-color: var(--swatch-status);
+  background-color: darkblue;
 }
 
 #edit-items {
@@ -246,7 +252,7 @@ body {
   width: 100%;
   border: 1px 0px 1px 1px;
   border-color: black;
-  background-color: linen;
+  background-color: darkblue;
   color: black;
 }
 
@@ -261,7 +267,7 @@ input {
   padding-left: 5%;
 }
 .top5-item {
-  background-color: var(--swatch-complement);
+  background-color: darkblue;
 }
 .top5-item-dragged-to {
   background-color: var(--swatch-accent);
