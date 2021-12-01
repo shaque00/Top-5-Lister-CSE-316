@@ -51,9 +51,9 @@ function GlobalStoreContextProvider(props) {
         listNameActive: false,
         itemActive: false,
         listMarkedForDeletion: null,
-        whichLists: null,
-        sortBy: null,
-        sortVal: null
+        whichLists: "",
+        sortBy: "",
+        sortVal: ""
     });
     const history = useHistory();
 
@@ -224,23 +224,23 @@ function GlobalStoreContextProvider(props) {
     }
 
     store.setLists = function(val) {
+        storeReducer({
+            type: GlobalStoreActionType.HOME,
+            payload: val
+        });
         if (val === "all"){
             history.push("/all-lists");
         } else if (val === "users"){
             history.push("/user");
         } else if (val === "com"){
             history.push("/community-lists");
-        } else {
-            console.log("in-reducer");
-            storeReducer({
-                type: GlobalStoreActionType.HOME,
-                payload: val
-            });
-            console.log("store.whichLists");
-            console.log(store.whichLists);
         }
-        console.log("WhichLists")
-        console.log(store.whichLists);
+    }
+
+    store.allLists = function(){
+        console.log("sadfsadfsdaf", store.whichLists);
+        store.setLists("all");
+        console.log("test:", store.whichLists);
     }
 
     // THESE ARE THE FUNCTIONS THAT WILL UPDATE OUR STORE AND

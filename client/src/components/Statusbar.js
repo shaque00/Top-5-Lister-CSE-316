@@ -3,6 +3,7 @@ import { GlobalStoreContext } from '../store'
 import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab';
 import { Box } from '@mui/system';
+import AuthContext from '../auth'
 
 /*
     Our Status bar React component goes at the bottom of our UI.
@@ -11,6 +12,7 @@ import { Box } from '@mui/system';
 */
 function Statusbar() {
     const { store } = useContext(GlobalStoreContext);
+    const { auth } = useContext(AuthContext);
     let text ="";
     if (store.currentList)
         text = store.currentList.name;
@@ -20,7 +22,8 @@ function Statusbar() {
     }
 
     let con = "";
-    if (store.whichLists === "home"){
+    console.log("tesadfsdafdst", store.whichLists);
+    if (store.whichLists === "" && auth.user !== null){
         con = 
             <Box>
                 <Fab 

@@ -97,6 +97,10 @@ export default function AppBanner() {
         return <AccountCircle />;
     }
 
+    function goToAllLists(){
+        store.allLists();
+    }
+
     let tBar = "";
     if (auth.loggedIn){
         tBar = 
@@ -121,8 +125,8 @@ export default function AppBanner() {
                                 aria-label="account of current user"
                                 aria-controls={menuId}
                                 aria-haspopup="true"
-                                onClick={handleProfileMenuOpen}
                                 color="inherit"
+                                onClick={goToAllLists}
                             >
                                 <PeopleIcon style = {{fontSize: "45px", color: "black"  }}/>
                             </IconButton>

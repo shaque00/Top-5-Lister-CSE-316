@@ -18,9 +18,7 @@ const HomeScreen = () => {
     const { auth } = useContext(AuthContext);
 
     useEffect(() => {
-        store.setLists("home");
         store.loadIdNamePairs();
-        //store.setLists("home");
     }, []);
 
     function handleCreateNewList() {
