@@ -111,6 +111,7 @@ export default function AppBanner() {
                                 aria-haspopup="true"
                                 onClick={handleCreateNewList}
                                 color="inherit"
+                                disabled={auth.guest}
                             >
                                 <HomeIcon style = {{fontSize: "45px", color: "black" }}/>
                             </IconButton>
@@ -123,7 +124,7 @@ export default function AppBanner() {
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <PersonIcon style = {{fontSize: "45px", color: "black"  }}/>
+                                <PeopleIcon style = {{fontSize: "45px", color: "black"  }}/>
                             </IconButton>
                             <IconButton
                                 size="large"
@@ -134,7 +135,7 @@ export default function AppBanner() {
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <PeopleIcon style = {{fontSize: "45px", color: "black"  }}/>
+                                <PersonIcon style = {{fontSize: "45px", color: "black"  }}/>
                             </IconButton>
                             <IconButton
                                 size="large"

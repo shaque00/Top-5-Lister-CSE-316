@@ -51,7 +51,9 @@ function GlobalStoreContextProvider(props) {
         listNameActive: false,
         itemActive: false,
         listMarkedForDeletion: null,
-        whichLists: null
+        whichLists: null,
+        sortBy: null,
+        sortVal: null
     });
     const history = useHistory();
 
@@ -71,7 +73,10 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 });
             }
             // STOP EDITING THE CURRENT LIST
@@ -82,7 +87,10 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 })
             }
             // CREATE A NEW LIST
@@ -93,7 +101,10 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter + 1,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 })
             }
             // GET ALL THE LISTS SO WE CAN PRESENT THEM
@@ -104,7 +115,10 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 });
             }
             // PREPARE TO DELETE A LIST
@@ -115,7 +129,10 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: payload
+                    listMarkedForDeletion: payload,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 });
             }
             // PREPARE TO DELETE A LIST
@@ -126,7 +143,10 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 });
             }
             // UPDATE A LIST
@@ -137,7 +157,10 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 });
             }
             // START EDITING A LIST ITEM
@@ -147,8 +170,9 @@ function GlobalStoreContextProvider(props) {
                     currentList: store.currentList,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
-                    isItemEditActive: true,
-                    listMarkedForDeletion: null
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 });
             }
             // START EDITING A LIST NAME
@@ -159,7 +183,10 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: true,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 });
             }
 
@@ -170,13 +197,50 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: store.sortVal
                 });
             } 
+
+            case GlobalStoreActionType.HOME:{
+                return setStore({
+                    idNamePairs: store.idNamePairs,
+                    currentList: null,
+                    newListCounter: store.newListCounter,
+                    isListNameEditActive: false,
+                    isItemEditActive: false,
+                    listMarkedForDeletion: null,
+                    whichLists: payload,
+                    sortBy: null,
+                    sortVal: null
+                });
+            }
 
             default:
                 return store;
         }
+    }
+
+    store.setLists = function(val) {
+        if (val === "all"){
+            history.push("/all-lists");
+        } else if (val === "users"){
+            history.push("/user");
+        } else if (val === "com"){
+            history.push("/community-lists");
+        } else {
+            console.log("in-reducer");
+            storeReducer({
+                type: GlobalStoreActionType.HOME,
+                payload: val
+            });
+            console.log("store.whichLists");
+            console.log(store.whichLists);
+        }
+        console.log("WhichLists")
+        console.log(store.whichLists);
     }
 
     // THESE ARE THE FUNCTIONS THAT WILL UPDATE OUR STORE AND

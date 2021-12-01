@@ -11,6 +11,9 @@ import WorkspaceScreen from './WorkspaceScreen'
 import LoginScreen from './LoginScreen'
 import ErrorModal from './ErrorModal'
 import DeleteModal from './DeleteModal'
+import Community from './Community'
+import AllLists from './AllLists'
+import UserLists from './UserLists'
 /*
     This serves as a module so that we can import
     all the other components as we wish.
@@ -30,5 +33,8 @@ export {
     WorkspaceScreen,
     LoginScreen,
     ErrorModal,
-    DeleteModal
+    DeleteModal,
+    Community,
+    AllLists,
+    UserLists
 }

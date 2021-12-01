@@ -13,27 +13,21 @@ import IconButton from '@mui/material/IconButton';
     
     @author McKilla Gorilla
 */
-const HomeScreen = () => {
+const AllLists = () => {
     const { store } = useContext(GlobalStoreContext);
     const { auth } = useContext(AuthContext);
 
     useEffect(() => {
-        store.setLists("home");
         store.loadIdNamePairs();
-        //store.setLists("home");
     }, []);
 
-    function handleCreateNewList() {
-        console.log("Asd");
-        store.createNewList();
-    }
     let listCard = "";
     console.log(store.idNamePairs);
     if (store) {
         listCard = 
             <List sx={{top: '1%', width: '90%', left: '5%', bgcolor: 'background.paper' }}>
             {
-                store.idNamePairs.filter(pair => pair.email === auth.user.email).map((pair) => (
+                store.idNamePairs.filter(pair => pair.date !== "edit").map((pair) => (
                     <ListCard
                         key={pair._id}
                         idNamePair={pair}
@@ -55,4 +49,4 @@ const HomeScreen = () => {
         </div>)
 }
 
-export default HomeScreen;
+export default AllLists;
