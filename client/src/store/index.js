@@ -225,8 +225,14 @@ function GlobalStoreContextProvider(props) {
         store.closeCurrentList();
     }
 
-    store.publishList = async function(){
+    store.publishList = async function(text1, text2, text3, text4, text5, title){
         console.log("publish");
+        store.currentList.name = title;
+        store.currentList.items[0] = text1;
+        store.currentList.items[1] = text2;
+        store.currentList.items[2] = text3;
+        store.currentList.items[3] = text4;
+        store.currentList.items[4] = text5;
         store.currentList.date = new Date().toLocaleDateString();
         store.updateCurrentList();
         store.closeCurrentList();
@@ -250,7 +256,7 @@ function GlobalStoreContextProvider(props) {
         let newListName = "Untitled" + store.newListCounter;
         let payload = {
             name: newListName,
-            items: ["?", "?", "?", "?", "?"],
+            items: ["", "", "", "", ""],
             ownerEmail: auth.user.email,
             likes: 0,
             dislikes: 0,

@@ -103,6 +103,12 @@ function ListCard(props) {
             </Typography>
     }
 
+    let comment = "";
+
+    if (idNamePair.date !== "edit"){
+        comment = <TextField onChange={handleUpdateText} onKeyPress={handleKeyEnter} fullWidth={true} label={"Add Comment"} id="outlined-basic" variant="outlined" ></TextField>;
+    }
+
     let cardElement =
     <List>
         <Divider />
@@ -162,13 +168,13 @@ function ListCard(props) {
                         {
                             idNamePair.comments.slice(0).reverse().map((item, index) => (
                                 <Typography sx={{left: "5px"}}variant="h5" component="h5">
-                                    {index+1}. {item}
+                                    {item}
                                 </Typography>
                             ))
                         }
                         </Paper></Grid>
                         <Grid item sx={{ flexGrow: 1,p:1 }}>                        
-                            <TextField onChange={handleUpdateText} onKeyPress={handleKeyEnter} fullWidth={true} label={"Add Comment"} id="outlined-basic" variant="outlined" ></TextField>
+                            {comment}
                         </Grid>
                     </Grid>
                 </Grid>

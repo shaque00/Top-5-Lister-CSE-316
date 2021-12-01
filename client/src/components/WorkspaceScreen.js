@@ -80,7 +80,7 @@ function WorkspaceScreen() {
 
     function publish(){
         console.log("local");
-        store.publishList();
+        store.publishList(text1, text2, text3, text4, text5, title);
     }
 
     if (!store.idNamePairs){

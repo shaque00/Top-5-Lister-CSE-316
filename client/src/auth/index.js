@@ -145,6 +145,7 @@ function AuthContextProvider(props) {
                 })
                 history.push("/");
                 store.loadIdNamePairs();
+                // set home here
             }
         } else {
             authReducer({
