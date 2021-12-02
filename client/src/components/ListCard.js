@@ -95,6 +95,11 @@ function ListCard(props) {
         store.setCurrentList(idNamePair._id);
     }
 
+    let bgc = "lightblue";
+    if (idNamePair.date === "edit"){
+        bgc = "lightyellow";
+    }
+
     let edPub = 
         <Button onClick={handleEdit} style={{color: "red", textDecoration: "underline"}} variant="text">
             Edit
@@ -112,7 +117,7 @@ function ListCard(props) {
     }
 
     let cardElement =
-        <Grid item xs={12} sx={{p:1,borderRadius: 5}} mt={2} style={{backgroundColor:"lightblue"}}>
+        <Grid item xs={12} sx={{p:0,borderRadius: 5}} mt={2} style={{backgroundColor:bgc}}>
                 <Grid container spacing={0}>
                     <Grid item xs={11}>
                         <Typography variant="h5"> {idNamePair.name} </Typography>

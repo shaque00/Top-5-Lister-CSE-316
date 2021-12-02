@@ -407,7 +407,7 @@ function GlobalStoreContextProvider(props) {
         if (response.data.success) {
             let top5List = response.data.top5List;
             console.log(top5List);
-            top5List.comments.push(top5List.ownerEmail + ":" + comment);
+            top5List.comments.push(auth.user.firstName + " "  + auth.user.lastName + ":" + comment);
             response = await api.updateTop5ListById(top5List._id, top5List);
             if (response.data.success) {
                 store.loadIdNamePairs();

@@ -199,7 +199,7 @@ function WorkspaceScreen() {
 
     return (
         <div id="top5-workspace">
-            <TextField onChange={handleTitle} defaultValue={store.currentList.name} style={{backgroundColor: "white", width:'50%'}} margin="dense">
+            <TextField onChange={handleTitle} defaultValue={store.currentList.name} style={{backgroundColor: "white", width:'50%'}} sx={{p:1}} margin="none">
             </TextField>
             <div id="workspace-edit">
                 <div id="edit-numbering">
