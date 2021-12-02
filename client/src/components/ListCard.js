@@ -16,6 +16,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import AuthContext from '../auth';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -26,6 +27,7 @@ import Button from '@mui/material/Button';
 */
 function ListCard(props) {
     const { store } = useContext(GlobalStoreContext);
+    const { auth } = useContext(AuthContext);
     const [editActive, setEditActive] = useState(false);
     const [text, setText] = useState("");
     const { idNamePair } = props;
@@ -33,8 +35,10 @@ function ListCard(props) {
 
     function handleClick () {
         setOpen(!open);
-        if (!open)
-            addView()
+        if (!open){
+            if  (idNamePair.date !== "edit")
+                addView()
+        }
       };
 
     function addView(){
@@ -98,9 +102,7 @@ function ListCard(props) {
 
     if (idNamePair.date !== "edit"){
         edPub = 
-            <Typography>
-                Published: {idNamePair.date}
-            </Typography>
+            <span> Published: {idNamePair.date}</span>
     }
 
     let comment = "";
@@ -110,17 +112,82 @@ function ListCard(props) {
     }
 
     let cardElement =
-    <List>
+        <Grid item xs={12} sx={{p:1,borderRadius: 5}} mt={2} style={{backgroundColor:"lightblue"}}>
+                <Grid container spacing={0}>
+                    <Grid item xs={11}>
+                        <Typography variant="h5"> {idNamePair.name} </Typography>
+                    </Grid>
+                    <Grid item xs={1}>
+                    <IconButton onClick={handleToggleEdit} aria-label='edit'>
+                        <ThumbUpIcon />
+                    </IconButton>
+                    {idNamePair.likes}
+                    <IconButton onClick={handleToggleEdit} aria-label='edit'>
+                        <ThumbDownIcon />
+                    </IconButton>
+                    {idNamePair.dislikes}
+                    <IconButton onClick={(event) => {
+                        handleDeleteList(event, idNamePair._id)
+                    }} aria-label='delete'>
+                        <DeleteIcon style={{fontSize:'20pt'}} />
+                    </IconButton>
+                    </Grid>
+                </Grid>
+                <Box style={{fontSize:'20pt'}}>
+                    
+                    
+                </Box>
+                <Collapse in={open}>
+                <Grid container>
+                    <Grid item xs={6} sx={{p:1}}>
+                        {
+                            idNamePair.items.map((item, index) => (
+                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
+                                    {index+1}. {item}
+                                </Typography>
+                            ))
+                        }
+                    </Grid>
+                    <Grid container direction={"row"} xs={6}>
+                        
+                        <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:100, overflow: 'auto'}}>
+                        {
+                            idNamePair.comments.slice(0).reverse().map((item, index) => (
+                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
+                                    {item}
+                                </Typography>
+                            ))
+                        }
+                        </Paper></Grid>
+                        <Grid item sx={{ flexGrow: 1,p:1 }}>                        
+                            {comment}
+                        </Grid>
+                    </Grid>
+                </Grid>
+        </Collapse>
+                <Box>
+                    <Typography sx={{p:1}}>By: {auth.user.firstName} {auth.user.lastName}</Typography>
+                </Box>
+                <Grid container>
+                    <Grid item xs={11}>
+                    {edPub}
+                    </Grid>
+                    <Grid item xs={1}>
+                    Views: {idNamePair.views}
+                    <IconButton onClick={handleClick} aria-label='delete'>
+                        {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                    </IconButton>
+                    </Grid>
+                    
+                </Grid>
+        </Grid>
+    /*<List>
         <Divider />
         <ListItem
             disabled={store.isListNameEditActive} 
             id={idNamePair._id}
             key={idNamePair._id}
             sx={{ marginTop: '0px', display: 'flex', pl: 1, pt: 0 , backgroundColor: "white"}}
-            /*onClick={(event) => {
-                handleLoadList(event, idNamePair._id)
-                }
-            }*/
             button={false}
             style={{
                 fontSize: '20pt',
@@ -194,7 +261,7 @@ function ListCard(props) {
                     </IconButton>
                 </Box>
             </Box>
-        </List>
+        </List>*/
 
     if (editActive) {
         cardElement =

@@ -8,6 +8,7 @@ import AuthContext from '../auth'
 import DeleteModal from './DeleteModal'
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import { Grid } from '@mui/material';
 /*
     This React component lists all the top5 lists in the UI.
     
@@ -25,7 +26,7 @@ const AllLists = () => {
     console.log(store.idNamePairs);
     if (store) {
         listCard = 
-            <List sx={{top: '1%', width: '90%', left: '5%', bgcolor: 'background.paper' }}>
+            <Grid container spacing={1} direction="row" sx={{pl:3}}>
             {
                 store.idNamePairs.filter(pair => pair.date !== "edit").map((pair) => (
                     <ListCard
@@ -35,8 +36,7 @@ const AllLists = () => {
                     />
                 ))
             }
-            <Divider />
-            </List>;
+            </Grid>;
     }
     return (
         <div id="top5-list-selector">
