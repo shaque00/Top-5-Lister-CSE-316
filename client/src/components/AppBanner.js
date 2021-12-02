@@ -102,6 +102,10 @@ export default function AppBanner() {
         store.allLists();
     }
 
+    function goToHome(){
+        store.setHome();
+    }
+
     let tBar = "";
     if (auth.loggedIn){
         tBar = 
@@ -114,7 +118,7 @@ export default function AppBanner() {
                                 aria-label="account of current user"
                                 aria-controls={menuId}
                                 aria-haspopup="true"
-                                onClick={handleCreateNewList}
+                                onClick={goToHome}
                                 color="inherit"
                                 disabled={auth.guest}
                             >

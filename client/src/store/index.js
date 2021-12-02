@@ -245,6 +245,7 @@ function GlobalStoreContextProvider(props) {
 
     store.setHome = function(){
         store.setLists("");
+        history.push("/");
     }
 
     // THESE ARE THE FUNCTIONS THAT WILL UPDATE OUR STORE AND
