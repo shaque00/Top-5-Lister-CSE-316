@@ -213,8 +213,8 @@ function GlobalStoreContextProvider(props) {
                     isItemEditActive: false,
                     listMarkedForDeletion: null,
                     whichLists: payload,
-                    sortBy: null,
-                    sortVal: null
+                    sortBy: "",
+                    sortVal: ""
                 });
             }
 

@@ -21,6 +21,7 @@ const AllLists = () => {
     useEffect(() => {
         store.loadIdNamePairs();
     }, []);
+    console.log("all lists, ", store.sortVal);
 
     let listCard = "";
     console.log(store.idNamePairs);
@@ -28,7 +29,8 @@ const AllLists = () => {
         listCard = 
             <Grid container spacing={1} direction="row" sx={{pl:3}}>
             {
-                store.idNamePairs.filter(pair => pair.date !== "edit").map((pair) => (
+                store.idNamePairs.filter(pair => pair.date !== "edit")
+                    .filter(pair => pair.name.toLowerCase().startsWith(store.sortVal.toLowerCase())).map((pair) => (
                     <ListCard
                         key={pair._id}
                         idNamePair={pair}

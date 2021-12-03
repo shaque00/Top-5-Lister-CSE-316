@@ -33,7 +33,8 @@ const HomeScreen = () => {
         listCard = 
             <Grid container spacing={1} direction="row" sx={{pl:3}}>
                 {
-                store.idNamePairs.filter(pair => pair.email === auth.user.email).map((pair) => (
+                store.idNamePairs.filter(pair => pair.email === auth.user.email)
+                    .filter(pair => pair.name.toLowerCase().startsWith(store.sortVal.toLowerCase())).map((pair) => (
                     <ListCard
                         key={pair._id}
                         idNamePair={pair}

@@ -31,6 +31,7 @@ export default function AppBanner() {
 
     function updateCriteria(event){
         setCriteria(event.target.value);
+        console.log(event.target.value);
     }
 
     const handleMenuClose = () => {
@@ -163,7 +164,7 @@ export default function AppBanner() {
                                 <FunctionsIcon style = {{fontSize: "45px", color: "black"  }}/>
                             </IconButton>
                         </Box>
-                        <TextField sx={{ flexGrow: 1 }} id="outlined-basic" variant="outlined" />
+                        <TextField onChange={updateCriteria} sx={{ flexGrow: 1 }} id="outlined-basic" variant="outlined" />
                         <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
                                 size="large"
