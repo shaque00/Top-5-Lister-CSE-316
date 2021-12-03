@@ -32,6 +32,9 @@ export default function AppBanner() {
     function updateCriteria(event){
         setCriteria(event.target.value);
         console.log(event.target.value);
+        if (store.whichLists !== "users"){
+            store.updateSortVal(event.target.value);
+        }
     }
 
     const handleMenuClose = () => {

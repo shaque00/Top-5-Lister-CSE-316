@@ -32,9 +32,7 @@ export const GlobalStoreActionType = {
     ADD_COMMENT: "ADD_COMMENT",
     PUBLISH_LIST: "PUBLISH_LIST",
     HOME: "HOME",
-    USER_LISTS: "USER_LISTS",
-    COMMUNITY_LISTS: "COMMUNITY_LISTS",
-    ALL_LISTS: "ALL_LISTS"
+    SORT_VAL: "SORT_VAL"
 }
 
 // WE'LL NEED THIS TO PROCESS TRANSACTIONS
@@ -218,6 +216,20 @@ function GlobalStoreContextProvider(props) {
                 });
             }
 
+            case GlobalStoreActionType.SORT_VAL:{
+                return setStore({
+                    idNamePairs: store.idNamePairs,
+                    currentList: null,
+                    newListCounter: store.newListCounter,
+                    isListNameEditActive: false,
+                    isItemEditActive: false,
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: store.sortBy,
+                    sortVal: payload
+                });
+            }
+
             default:
                 return store;
         }
@@ -235,6 +247,13 @@ function GlobalStoreContextProvider(props) {
         } else if (val === "com"){
             history.push("/community-lists");
         }
+    }
+
+    store.updateSortVal = function(val){
+        storeReducer({
+            type: GlobalStoreActionType.SORT_VAL,
+            payload: val
+        });
     }
 
     store.allLists = function(){
