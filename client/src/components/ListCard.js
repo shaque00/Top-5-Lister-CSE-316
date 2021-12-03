@@ -119,10 +119,10 @@ function ListCard(props) {
     let cardElement =
         <Grid item xs={12} sx={{p:0,borderRadius: 5}} mt={2} style={{backgroundColor:bgc}}>
                 <Grid container spacing={0}>
-                    <Grid item xs={11}>
+                    <Grid item xs={10}>
                         <Typography variant="h5"> {idNamePair.name} </Typography>
                     </Grid>
-                    <Grid item xs={1}>
+                    <Grid item xs={2}>
                     <IconButton onClick={handleToggleEdit} aria-label='edit'>
                         <ThumbUpIcon />
                     </IconButton>
@@ -138,10 +138,6 @@ function ListCard(props) {
                     </IconButton>
                     </Grid>
                 </Grid>
-                <Box style={{fontSize:'20pt'}}>
-                    
-                    
-                </Box>
                 <Collapse in={open}>
                 <Grid container>
                     <Grid item xs={6} sx={{p:1}}>
