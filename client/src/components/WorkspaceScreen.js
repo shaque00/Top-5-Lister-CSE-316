@@ -64,6 +64,16 @@ function WorkspaceScreen() {
             return true;
         }
 
+        let s = Set();
+        s.add(text1.toLowerCase());
+        s.add(text2.toLowerCase());
+        s.add(text3.toLowerCase());
+        s.add(text4.toLowerCase());
+        s.add(text5.toLowerCase());
+        if (s.size !== 5){
+            return true;
+        }
+
         // Now check if the title name isnt the same as a published title
         let a = store.idNamePairs.filter(list => list.email === auth.user.email).filter(list => list.date !== "edit").filter(list => list.name === title);
         console.log(a);

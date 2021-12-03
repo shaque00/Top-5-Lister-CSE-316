@@ -22,11 +22,16 @@ export default function AppBanner() {
     const { auth } = useContext(AuthContext);
     const { store } = useContext(GlobalStoreContext);
     const [anchorEl, setAnchorEl] = useState(null);
+    const [criteria, setCriteria] = useState("");
     const isMenuOpen = Boolean(anchorEl);
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    function updateCriteria(event){
+        setCriteria(event.target.value);
+    }
 
     const handleMenuClose = () => {
         setAnchorEl(null);
