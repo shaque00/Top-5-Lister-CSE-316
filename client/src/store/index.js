@@ -321,12 +321,13 @@ function GlobalStoreContextProvider(props) {
 
     // THIS FUNCTION CREATES A NEW LIST
     store.createNewList = async function () {
-        console.log("In Store");
+        console.log("In Store: ", auth.user.userName);
         let newListName = "Untitled" + store.newListCounter;
         let payload = {
             name: newListName,
             items: ["", "", "", "", ""],
             ownerEmail: auth.user.email,
+            userName: auth.user.userName,
             likes: 0,
             dislikes: 0,
             views: 0,
@@ -334,9 +335,11 @@ function GlobalStoreContextProvider(props) {
             comments: [],
             ldMap: new Map()
         };
+        console.log("success");
         console.log(auth.user.email);
         const response = await api.createTop5List(payload);
         if (response.data.success) {
+            console.log("success");
             tps.clearAllTransactions();
             let newList = response.data.top5List;
             storeReducer({

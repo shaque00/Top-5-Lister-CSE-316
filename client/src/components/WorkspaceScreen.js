@@ -64,7 +64,7 @@ function WorkspaceScreen() {
             return true;
         }
 
-        let s = Set();
+        let s = new Set();
         s.add(text1.toLowerCase());
         s.add(text2.toLowerCase());
         s.add(text3.toLowerCase());

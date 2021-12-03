@@ -62,6 +62,8 @@ loginUser = async (req, res) => {
 
         console.log("Passsword matched");
 
+        console.log(existingUser);
+
         const token = auth.signToken(existingUser);
 
         console.log("Checks have passed");
@@ -75,7 +77,8 @@ loginUser = async (req, res) => {
             user: {
                 firstName: existingUser.firstName,
                 lastName: existingUser.lastName,
-                email: existingUser.email
+                email: existingUser.email,
+                userName: existingUser.userName
             }
         }).send();
     } catch (err) {

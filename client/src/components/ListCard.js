@@ -171,7 +171,7 @@ function ListCard(props) {
                 </Grid>
         </Collapse>
                 <Box>
-                    <Typography sx={{p:1}}>By: {auth.user.firstName} {auth.user.lastName}</Typography>
+                    <Typography sx={{p:1}}>By: {idNamePair.userName}</Typography>
                 </Box>
                 <Grid container>
                     <Grid item xs={11}>
