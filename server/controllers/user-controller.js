@@ -10,7 +10,8 @@ getLoggedIn = async (req, res) => {
             user: {
                 firstName: loggedInUser.firstName,
                 lastName: loggedInUser.lastName,
-                email: loggedInUser.email
+                email: loggedInUser.email,
+                userName: loggindUser.userName
             }
         }).send();
     })
@@ -19,7 +20,7 @@ getLoggedIn = async (req, res) => {
 loginUser = async (req, res) => {
     console.log("In usercontroller for the login function");
     try {
-        const { email, password} = req.body;
+        const { email, password, userName} = req.body;
         console.log(email, password);
 
         if (!email || !password) {
@@ -36,6 +37,14 @@ loginUser = async (req, res) => {
         const existingUser = await User.findOne({ email: email });
 
         if (!existingUser){
+            return res
+                .status(400)
+                .json({  errorMessage: "Wrong email or password." });
+        }
+
+        const existingUser2 = await User.findOne({ userName: userName });
+
+        if (!existingUser2){
             return res
                 .status(400)
                 .json({  errorMessage: "Wrong email or password." });
@@ -78,8 +87,8 @@ loginUser = async (req, res) => {
 registerUser = async (req, res) => {
     console.log("Registering a neww users");
     try {
-        const { firstName, lastName, email, password, passwordVerify } = req.body;
-        if (!firstName || !lastName || !email || !password || !passwordVerify) {
+        const { firstName, lastName, email, password, passwordVerify, userName } = req.body;
+        if (!firstName || !lastName || !email || !password || !passwordVerify || !userName) {
             return res
                 .status(400)
                 .json({ errorMessage: "Please enter all required fields." });
@@ -110,12 +119,22 @@ registerUser = async (req, res) => {
                 })
         }
 
+        const existingUser2 = await User.findOne({ userName: userName });
+        if (existingUser2) {
+            return res
+                .status(400)
+                .json({
+                    success: false,
+                    errorMessage: "An account with this user name address already exists."
+                })
+        }
+
         const saltRounds = 10;
         const salt = await bcrypt.genSalt(saltRounds);
         const passwordHash = await bcrypt.hash(password, salt);
 
         const newUser = new User({
-            firstName, lastName, email, passwordHash
+            firstName, lastName, email, passwordHash, userName
         });
         const savedUser = await newUser.save();
 
@@ -131,7 +150,8 @@ registerUser = async (req, res) => {
             user: {
                 firstName: savedUser.firstName,
                 lastName: savedUser.lastName,
-                email: savedUser.email
+                email: savedUser.email,
+                userName: savedUser.userName
             }
         }).send();
     } catch (err) {
