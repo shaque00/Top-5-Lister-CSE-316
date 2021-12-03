@@ -32,8 +32,7 @@ export default function LoginScreen() {
     
     auth.loginUser({
         email: formData.get('email'),
-        password: formData.get('password'),
-        userName: formData.get('userName')
+        password: formData.get('password')
     }, store);
   };
 
@@ -65,16 +64,6 @@ export default function LoginScreen() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="userName"
-              label="User Name"
-              name="userName"
-              autoComplete="userName"
               autoFocus
             />
             <TextField
