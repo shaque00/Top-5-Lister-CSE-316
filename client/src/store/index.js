@@ -271,6 +271,13 @@ function GlobalStoreContextProvider(props) {
         history.push("/");
     }
 
+    store.addDL = function(id, val){
+        // get list by id
+        // check if already liked or disliked and doing the samme actionn
+        // increment decreemnt like dislike accordingly
+        
+    }
+
     // THESE ARE THE FUNCTIONS THAT WILL UPDATE OUR STORE AND
     // DRIVE THE STATE OF THE APPLICATION. WE'LL CALL THESE IN 
     // RESPONSE TO EVENTS INSIDE OUR COMPONENTS.

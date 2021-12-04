@@ -125,6 +125,21 @@ function ListCard(props) {
         </IconButton>
     }
 
+    let dis = true;
+    if (idNamePair.date !== "edit"){
+        dis = false;
+    }
+
+    function addDislike(){
+        sstore.addDL(idNamePair._id, -1);
+        console.log(-1);
+    }
+
+    function addLike(){
+        store.addDL(idNamePair._id, 1);
+        console.log(1);
+    }
+
     let cardElement =
         <Grid item xs={12} sx={{p:0,borderRadius: 5}} mt={2} style={{backgroundColor:bgc}}>
                 <Grid container spacing={0}>
@@ -132,11 +147,11 @@ function ListCard(props) {
                         <Typography variant="h5"> {idNamePair.name} </Typography>
                     </Grid>
                     <Grid item xs={2}>
-                    <IconButton onClick={handleToggleEdit} aria-label='edit'>
+                    <IconButton disabled={dis} onClick={addLike} aria-label='edit'>
                         <ThumbUpIcon />
                     </IconButton>
                     {idNamePair.likes}
-                    <IconButton onClick={handleToggleEdit} aria-label='edit'>
+                    <IconButton disabled={dis} onClick={addDislike} aria-label='edit'>
                         <ThumbDownIcon />
                     </IconButton>
                     {idNamePair.dislikes}

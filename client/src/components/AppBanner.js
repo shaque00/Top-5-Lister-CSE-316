@@ -78,6 +78,7 @@ export default function AppBanner() {
         >
             <MenuItem onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
             <MenuItem onClick={handleMenuClose}><Link to='/login/'>Login</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link to='/all-lists/'>Guest</Link></MenuItem>
         </Menu>
     );
     const loggedInMenu = 
@@ -116,7 +117,7 @@ export default function AppBanner() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleLogout}>Publish Date (Newest)</MenuItem>
-            <MenuItem onClick={handleLogout}>Publish Date (Newest)</MenuItem>
+            <MenuItem onClick={handleLogout}>Publish Date (Oldest)</MenuItem>
             <MenuItem onClick={handleLogout}>Views</MenuItem>
             <MenuItem onClick={handleLogout}>Likes</MenuItem>
             <MenuItem onClick={handleLogout}>Dislikes</MenuItem>
