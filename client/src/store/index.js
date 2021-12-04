@@ -249,6 +249,10 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
+    store.users = function(){
+        store.setLists("users");
+    }
+
     store.updateSortVal = function(val){
         storeReducer({
             type: GlobalStoreActionType.SORT_VAL,

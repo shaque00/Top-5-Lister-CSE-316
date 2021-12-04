@@ -29,7 +29,7 @@ const UserLists = () => {
         listCard = 
             <Grid container spacing={1} direction="row" sx={{pl:3}}>
             {
-                store.idNamePairs.filter(pair => pair.userName === store.sortVal)
+                store.idNamePairs.filter(pair => pair.userName === store.sortVal).filter(pair => pair.date !== "edit")
                      .map((pair) => (
                     <ListCard
                         key={pair._id}

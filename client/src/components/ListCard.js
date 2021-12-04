@@ -116,6 +116,15 @@ function ListCard(props) {
         comment = <TextField onChange={handleUpdateText} onKeyPress={handleKeyEnter} fullWidth={true} label={"Add Comment"} id="outlined-basic" variant="outlined" ></TextField>;
     }
 
+    let delBut = "";
+    if (store.whichLists === ""){
+        delBut = <IconButton onClick={(event) => {
+            handleDeleteList(event, idNamePair._id)
+        }} aria-label='delete'>
+            <DeleteIcon style={{fontSize:'20pt'}} />
+        </IconButton>
+    }
+
     let cardElement =
         <Grid item xs={12} sx={{p:0,borderRadius: 5}} mt={2} style={{backgroundColor:bgc}}>
                 <Grid container spacing={0}>
@@ -131,11 +140,7 @@ function ListCard(props) {
                         <ThumbDownIcon />
                     </IconButton>
                     {idNamePair.dislikes}
-                    <IconButton onClick={(event) => {
-                        handleDeleteList(event, idNamePair._id)
-                    }} aria-label='delete'>
-                        <DeleteIcon style={{fontSize:'20pt'}} />
-                    </IconButton>
+                    {delBut}
                     </Grid>
                 </Grid>
                 <Collapse in={open}>

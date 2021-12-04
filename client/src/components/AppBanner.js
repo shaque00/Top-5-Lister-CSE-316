@@ -97,7 +97,31 @@ export default function AppBanner() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
-        </Menu>        
+        </Menu>
+        
+    const sortMenu = 
+    <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleLogout}>Publish Date (Newest)</MenuItem>
+            <MenuItem onClick={handleLogout}>Publish Date (Newest)</MenuItem>
+            <MenuItem onClick={handleLogout}>Views</MenuItem>
+            <MenuItem onClick={handleLogout}>Likes</MenuItem>
+            <MenuItem onClick={handleLogout}>Dislikes</MenuItem>
+        </Menu>
+
 
     let editToolbar = "";
     let menu = loggedOutMenu;
@@ -120,6 +144,10 @@ export default function AppBanner() {
 
     function goToHome(){
         store.setHome();
+    }
+
+    function goToUsers(){
+        store.users();
     }
 
     let tBar = "";
@@ -157,7 +185,7 @@ export default function AppBanner() {
                                 aria-label="account of current user"
                                 aria-controls={menuId}
                                 aria-haspopup="true"
-                                onClick={handleProfileMenuOpen}
+                                onClick={goToUsers}
                                 color="inherit"
                             >
                                 <PersonIcon style = {{fontSize: "45px", color: "black"  }}/>
