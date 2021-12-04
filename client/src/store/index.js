@@ -271,11 +271,25 @@ function GlobalStoreContextProvider(props) {
         history.push("/");
     }
 
-    store.addDL = function(id, val){
+    store.addDL = async function(id, val){
         // get list by id
         // check if already liked or disliked and doing the samme actionn
         // increment decreemnt like dislike accordingly
-        
+        let response = await api.getTop5ListById(id);
+        if (response.data.success) {
+            let top5List = response.data.top5List;
+            if (top5List.ldMap.has(auth.user.userName)){
+                if (top5List.ldMap.get(auth.user.userName) === val){
+                    return;
+                } else if(val === 1) {
+                    // incremment like decrease dislike
+                } else {
+                    // incremment dislike decrease like
+                }
+            } else {
+                top5List.ldMap.set(auth.user.userName, val);
+            }
+        }
     }
 
     // THESE ARE THE FUNCTIONS THAT WILL UPDATE OUR STORE AND

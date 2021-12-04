@@ -131,7 +131,7 @@ function ListCard(props) {
     }
 
     function addDislike(){
-        sstore.addDL(idNamePair._id, -1);
+        store.addDL(idNamePair._id, -1);
         console.log(-1);
     }
 
@@ -140,6 +140,16 @@ function ListCard(props) {
         console.log(1);
     }
 
+    let lColor = "";
+    let dColor = "";
+    if (idNamePair.ldMap.has(auth.user.userName)){
+    if (idNamePair.ldMap.get(auth.user.userName) == 1){
+        lColor = "green";
+    } else if (idNamePair.ldMap.get(auth.user.userName) == 1){
+        dColor = "red"
+    }}
+    console.log(idNamePair);
+
     let cardElement =
         <Grid item xs={12} sx={{p:0,borderRadius: 5}} mt={2} style={{backgroundColor:bgc}}>
                 <Grid container spacing={0}>
@@ -147,7 +157,7 @@ function ListCard(props) {
                         <Typography variant="h5"> {idNamePair.name} </Typography>
                     </Grid>
                     <Grid item xs={2}>
-                    <IconButton disabled={dis} onClick={addLike} aria-label='edit'>
+                    <IconButton disabled={dis} style={{fill: "green"}} onClick={addLike} aria-label='edit'>
                         <ThumbUpIcon />
                     </IconButton>
                     {idNamePair.likes}
