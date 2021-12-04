@@ -30,10 +30,17 @@ export default function AppBanner() {
     };
 
     function updateCriteria(event){
-        setCriteria(event.target.value);
         console.log(event.target.value);
         if (store.whichLists !== "users"){
             store.updateSortVal(event.target.value);
+        } else {
+            setCriteria(event.target.value);
+        }
+    }
+
+    function userSelection(event){
+        if (event.code === "Enter"){
+            store.updateSortVal(criteria);
         }
     }
 
@@ -167,7 +174,7 @@ export default function AppBanner() {
                                 <FunctionsIcon style = {{fontSize: "45px", color: "black"  }}/>
                             </IconButton>
                         </Box>
-                        <TextField onChange={updateCriteria} sx={{ flexGrow: 1 }} id="outlined-basic" variant="outlined" />
+                        <TextField onKeyPress={userSelection} onChange={updateCriteria} sx={{ flexGrow: 1 }} id="outlined-basic" variant="outlined" />
                         <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
                                 size="large"
