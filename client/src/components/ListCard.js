@@ -131,24 +131,26 @@ function ListCard(props) {
     }
 
     function addDislike(){
-        store.addDL(idNamePair._id, -1);
-        console.log(-1);
+        store.addDL(idNamePair._id, "0");
+        console.log("0");
     }
 
     function addLike(){
-        store.addDL(idNamePair._id, 1);
-        console.log(1);
+        store.addDL(idNamePair._id, "1");
+        console.log("1");
     }
+
+    console.log(idNamePair);
 
     let lColor = "";
     let dColor = "";
-    if (idNamePair.ldMap.has(auth.user.userName)){
-    if (idNamePair.ldMap.get(auth.user.userName) == 1){
-        lColor = "green";
-    } else if (idNamePair.ldMap.get(auth.user.userName) == 1){
-        dColor = "red"
-    }}
-    console.log(idNamePair);
+    if (idNamePair.ld.hasOwnProperty(auth.user.userName)){
+        if (idNamePair.ld[auth.user.userName] === "1"){
+            lColor = "green";
+        } else if (idNamePair.ld[sauth.user.userName] == "0"){
+            dColor = "red"
+        }
+    }
 
     let cardElement =
         <Grid item xs={12} sx={{p:0,borderRadius: 5}} mt={2} style={{backgroundColor:bgc}}>
@@ -157,12 +159,12 @@ function ListCard(props) {
                         <Typography variant="h5"> {idNamePair.name} </Typography>
                     </Grid>
                     <Grid item xs={2}>
-                    <IconButton disabled={dis} style={{fill: "green"}} onClick={addLike} aria-label='edit'>
-                        <ThumbUpIcon />
+                    <IconButton disabled={dis} onClick={addLike} aria-label='edit'>
+                        <ThumbUpIcon style={{fill: lColor}}/>
                     </IconButton>
                     {idNamePair.likes}
                     <IconButton disabled={dis} onClick={addDislike} aria-label='edit'>
-                        <ThumbDownIcon />
+                        <ThumbDownIcon style={{fill: dColor}}/>
                     </IconButton>
                     {idNamePair.dislikes}
                     {delBut}

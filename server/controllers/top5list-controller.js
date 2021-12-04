@@ -57,7 +57,7 @@ updateTop5List = async (req, res) => {
         top5List.comments = body.comments;
         top5List.likes = body.likes;
         top5List.dislikes = body.dislikes;
-        top5List.ldMap = body.ldMap;
+        top5List.ld = body.ld;
         top5List.date = body.date;
 
         top5List

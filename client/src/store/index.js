@@ -278,16 +278,35 @@ function GlobalStoreContextProvider(props) {
         let response = await api.getTop5ListById(id);
         if (response.data.success) {
             let top5List = response.data.top5List;
-            if (top5List.ldMap.has(auth.user.userName)){
-                if (top5List.ldMap.get(auth.user.userName) === val){
+            console.log("nont found");
+            console.log(top5List.ld);
+            console.log(auth.user.userName in top5List.ld)
+            if (auth.user.userName in top5List.ld){
+                if (top5List.ld[auth.user.userName] === val){
                     return;
-                } else if(val === 1) {
-                    // incremment like decrease dislike
+                }
+                if (val === "1"){
+                    top5List.likes++;
+                    top5List.dislikes--;
                 } else {
-                    // incremment dislike decrease like
+                    top5List.likes--;
+                    top5List.dislikes++;
+                }
+                response = await api.updateTop5ListById(top5List._id, top5List);
+                if (response.data.success) {
+                    store.loadIdNamePairs();
                 }
             } else {
-                top5List.ldMap.set(auth.user.userName, val);
+                top5List.ld[auth.user.userName] = val;
+                if (val === "1"){
+                    top5List.likes++;
+                } else {
+                    top5List.dislikes++;
+                }
+                response = await api.updateTop5ListById(top5List._id, top5List);
+                if (response.data.success) {
+                    store.loadIdNamePairs();
+                }
             }
         }
     }
@@ -348,8 +367,8 @@ function GlobalStoreContextProvider(props) {
         store.currentList.items[4] = text5;
         store.currentList.date = new Date().toLocaleDateString();
         store.updateCurrentList();
-        store.closeCurrentList();
         store.loadIdNamePairs();
+        store.closeCurrentList();
     }
 
     // THIS FUNCTION PROCESSES CLOSING THE CURRENTLY LOADED LIST
@@ -377,7 +396,7 @@ function GlobalStoreContextProvider(props) {
             views: 0,
             date: "edit", 
             comments: [],
-            ldMap: new Map()
+            ld: []
         };
         console.log("success");
         console.log(auth.user.email);
@@ -454,7 +473,7 @@ function GlobalStoreContextProvider(props) {
         if (response.data.success) {
             let top5List = response.data.top5List;
             console.log(top5List);
-            top5List.comments.push(auth.user.firstName + " "  + auth.user.lastName + ":" + comment);
+            top5List.comments.push(auth.user.userName + ":" + comment);
             response = await api.updateTop5ListById(top5List._id, top5List);
             if (response.data.success) {
                 store.loadIdNamePairs();
