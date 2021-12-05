@@ -272,17 +272,61 @@ function GlobalStoreContextProvider(props) {
     }
 
     store.addLike = async function(id){
-        // get list by id
-        // check if already liked or disliked and doing the samme actionn
-        // increment decreemnt like dislike accordingly
         let response = await api.getTop5ListById(id);
         if (response.data.success) {
-            
+            let top5List = response.data.top5List;
+            // Already likeed so return
+            if (top5List.usersL.includes(auth.user.userName)){
+                console.log("already liked");
+                return;
+            } else {
+                // Check if previously disliked, if so, then remove it and decreasee dislikes
+                if (top5List.usersD.includes(auth.user.userName)){
+                    top5List.usersD.splice(top5List.usersL.indexOf(auth.user.userName), 1);
+                    top5List.dislikes--;
+                }
+
+                // add to array
+                top5List.usersL.push(auth.user.userName);
+                // increase likes
+                top5List.likes++;
+                // Update the lists
+                response = await api.updateTop5ListById(top5List._id, top5List);
+                if (response.data.success) {
+                    store.loadIdNamePairs();
+                }
+            }
+
         }
     }
 
     store.addDislike = async function(id){
-        
+        let response = await api.getTop5ListById(id);
+        if (response.data.success) {
+            let top5List = response.data.top5List;
+            // Already dislikeed so return
+            if (top5List.usersD.includes(auth.user.userName)){
+                console.log("already disliked");
+                return;
+            } else {
+                // Check if previously liked, if so, then remove it and decreasee likes
+                if (top5List.usersL.includes(auth.user.userName)){
+                    top5List.usersL.splice(top5List.usersL.indexOf(auth.user.userName), 1);
+                    top5List.likes--;
+                }
+
+                // add to array
+                top5List.usersD.push(auth.user.userName);
+                // increase dislikes
+                top5List.dislikes++;
+                // Update the lists
+                response = await api.updateTop5ListById(top5List._id, top5List);
+                if (response.data.success) {
+                    store.loadIdNamePairs();
+                }
+            }
+
+        }
     }
     // THESE ARE THE FUNCTIONS THAT WILL UPDATE OUR STORE AND
     // DRIVE THE STATE OF THE APPLICATION. WE'LL CALL THESE IN 

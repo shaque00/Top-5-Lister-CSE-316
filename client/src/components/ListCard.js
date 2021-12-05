@@ -144,13 +144,11 @@ function ListCard(props) {
 
     let lColor = "";
     let dColor = "";
-    /*if (idNamePair.ld.hasOwnProperty(auth.user.userName)){
-        if (idNamePair.ld[auth.user.userName] === "1"){
-            lColor = "green";
-        } else if (idNamePair.ld[auth.user.userName] == "0"){
-            dColor = "red"
-        }
-    }*/
+    if (idNamePair.usersD.includes(auth.user.userName)){
+        dColor = "red";
+    } else if (idNamePair.usersL.includes(auth.user.userName)){
+        lColor = "green"
+    }
 
     let cardElement =
         <Grid item xs={12} sx={{p:0,borderRadius: 5}} mt={2} style={{backgroundColor:bgc}}>
