@@ -271,46 +271,19 @@ function GlobalStoreContextProvider(props) {
         history.push("/");
     }
 
-    store.addDL = async function(id, val){
+    store.addLike = async function(id){
         // get list by id
         // check if already liked or disliked and doing the samme actionn
         // increment decreemnt like dislike accordingly
         let response = await api.getTop5ListById(id);
         if (response.data.success) {
-            let top5List = response.data.top5List;
-            console.log("nont found");
-            console.log(top5List.ld);
-            console.log(auth.user.userName in top5List.ld)
-            if (auth.user.userName in top5List.ld){
-                if (top5List.ld[auth.user.userName] === val){
-                    return;
-                }
-                if (val === "1"){
-                    top5List.likes++;
-                    top5List.dislikes--;
-                } else {
-                    top5List.likes--;
-                    top5List.dislikes++;
-                }
-                response = await api.updateTop5ListById(top5List._id, top5List);
-                if (response.data.success) {
-                    store.loadIdNamePairs();
-                }
-            } else {
-                top5List.ld[auth.user.userName] = val;
-                if (val === "1"){
-                    top5List.likes++;
-                } else {
-                    top5List.dislikes++;
-                }
-                response = await api.updateTop5ListById(top5List._id, top5List);
-                if (response.data.success) {
-                    store.loadIdNamePairs();
-                }
-            }
+            
         }
     }
 
+    store.addDislike = async function(id){
+        
+    }
     // THESE ARE THE FUNCTIONS THAT WILL UPDATE OUR STORE AND
     // DRIVE THE STATE OF THE APPLICATION. WE'LL CALL THESE IN 
     // RESPONSE TO EVENTS INSIDE OUR COMPONENTS.
@@ -357,18 +330,10 @@ function GlobalStoreContextProvider(props) {
         store.closeCurrentList();
     }
 
-    store.publishList = async function(text1, text2, text3, text4, text5, title){
+    store.publishList = function(text1, text2, text3, text4, text5, title){
         console.log("publish");
-        store.currentList.name = title;
-        store.currentList.items[0] = text1;
-        store.currentList.items[1] = text2;
-        store.currentList.items[2] = text3;
-        store.currentList.items[3] = text4;
-        store.currentList.items[4] = text5;
         store.currentList.date = new Date().toLocaleDateString();
-        store.updateCurrentList();
-        store.loadIdNamePairs();
-        store.closeCurrentList();
+        store.saveEdit(text1, text2, text3, text4, text5, title);
     }
 
     // THIS FUNCTION PROCESSES CLOSING THE CURRENTLY LOADED LIST
@@ -396,7 +361,8 @@ function GlobalStoreContextProvider(props) {
             views: 0,
             date: "edit", 
             comments: [],
-            ld: []
+            usersL: [],
+            usersD: []
         };
         console.log("success");
         console.log(auth.user.email);

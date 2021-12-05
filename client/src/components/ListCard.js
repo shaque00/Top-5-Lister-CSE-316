@@ -131,26 +131,26 @@ function ListCard(props) {
     }
 
     function addDislike(){
-        store.addDL(idNamePair._id, "0");
-        console.log("0");
+        store.addDislike(idNamePair._id);
+        console.log(0);
     }
 
     function addLike(){
-        store.addDL(idNamePair._id, "1");
-        console.log("1");
+        store.addLike(idNamePair._id);
+        console.log(1);
     }
 
     console.log(idNamePair);
 
     let lColor = "";
     let dColor = "";
-    if (idNamePair.ld.hasOwnProperty(auth.user.userName)){
+    /*if (idNamePair.ld.hasOwnProperty(auth.user.userName)){
         if (idNamePair.ld[auth.user.userName] === "1"){
             lColor = "green";
-        } else if (idNamePair.ld[sauth.user.userName] == "0"){
+        } else if (idNamePair.ld[auth.user.userName] == "0"){
             dColor = "red"
         }
-    }
+    }*/
 
     let cardElement =
         <Grid item xs={12} sx={{p:0,borderRadius: 5}} mt={2} style={{backgroundColor:bgc}}>
