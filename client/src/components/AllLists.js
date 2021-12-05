@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { GlobalStoreContext } from '../store'
 import ListCard from './ListCard.js'
-import { Fab, Typography } from '@mui/material'
+import { Fab, stepperClasses, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import List from '@mui/material/List';
 import AuthContext from '../auth'
@@ -30,7 +30,23 @@ const AllLists = () => {
             <Grid container spacing={1} direction="row" sx={{pl:3}}>
             {
                 store.idNamePairs.filter(pair => pair.date !== "edit")
-                    .filter(pair => pair.name.toLowerCase().startsWith(store.sortVal.toLowerCase())).map((pair) => (
+                    .filter(pair => pair.name.toLowerCase().startsWith(store.sortVal.toLowerCase())).sort(function(l1, l2){
+                        if (store.sortBy === "l"){
+                            return l1.likes - l2.likes;
+                        }
+                        if (store.sortBy === "d"){
+                            return l1.dislikes - l2.dislikes;
+                        }
+                        if (store.sortBy === "v"){
+                            return l1.views - l2.views;
+                        }
+                        if (store.sortBy === "do"){
+                        
+                        }if (store.sortBy === "dn"){
+                        
+                        }
+                    })
+                    .map((pair) => (
                     <ListCard
                         key={pair._id}
                         idNamePair={pair}
