@@ -21,10 +21,10 @@ const AllLists = () => {
     useEffect(() => {
         store.loadIdNamePairs();
     }, []);
-    console.log("all lists, ", store.sortVal);
+    //console.log("all lists, ", store.sortVal);
 
     let listCard = "";
-    console.log(store.idNamePairs);
+    //console.log(store.idNamePairs);
     if (store) {
         listCard = 
             <Grid container spacing={1} direction="row" sx={{pl:3}}>

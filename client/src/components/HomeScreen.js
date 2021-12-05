@@ -28,7 +28,7 @@ const HomeScreen = () => {
         store.createNewList();
     }
     let listCard = "";
-    console.log(store.idNamePairs);
+    console.log("ssort by val", store.sortBy);
     if (store) {
         listCard = 
             <Grid container spacing={1} direction="row" sx={{pl:3}}>

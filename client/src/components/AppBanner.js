@@ -127,8 +127,8 @@ export default function AppBanner() {
             <MenuItem onClick={sortDateN}>Publish Date (Newest)</MenuItem>
             <MenuItem onClick={sortDateO}>Publish Date (Oldest)</MenuItem>
             <MenuItem onClick={sortView}>Views</MenuItem>
-            <MenuItem onClick={sortDislike}>Likes</MenuItem>
-            <MenuItem onClick={sortLike}>Dislikes</MenuItem>
+            <MenuItem onClick={sortLike}>Likes</MenuItem>
+            <MenuItem onClick={sortDislike}>Dislikes</MenuItem>
         </Menu>
 
     function sortDateN() {
