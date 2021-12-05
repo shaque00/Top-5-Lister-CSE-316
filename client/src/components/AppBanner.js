@@ -22,11 +22,18 @@ export default function AppBanner() {
     const { auth } = useContext(AuthContext);
     const { store } = useContext(GlobalStoreContext);
     const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl2, setAnchorEl2] = useState(null);
     const [criteria, setCriteria] = useState("");
     const isMenuOpen = Boolean(anchorEl);
+    const isMenuOpen2 = Boolean(anchorEl2);
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
+    };
+
+    const handleProfileMenuOpen2 = (event) => {
+        console.log("here");
+        setAnchorEl2(event.currentTarget);
     };
 
     function updateCriteria(event){
@@ -46,6 +53,7 @@ export default function AppBanner() {
 
     const handleMenuClose = () => {
         setAnchorEl(null);
+        setAnchorEl2(null);
     };
 
     const handleLogout = () => {
@@ -102,7 +110,7 @@ export default function AppBanner() {
         
     const sortMenu = 
     <Menu
-            anchorEl={anchorEl}
+            anchorEl={anchorEl2}
             anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
@@ -113,7 +121,7 @@ export default function AppBanner() {
                 vertical: 'top',
                 horizontal: 'right',
             }}
-            open={isMenuOpen}
+            open={isMenuOpen2}
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleLogout}>Publish Date (Newest)</MenuItem>
@@ -211,7 +219,7 @@ export default function AppBanner() {
                                 aria-label="account of current user"
                                 aria-controls={menuId}
                                 aria-haspopup="true"
-                                onClick={handleProfileMenuOpen}
+                                onClick={handleProfileMenuOpen2}
                                 color="inherit"
                             >
                                 <Typography
@@ -261,6 +269,9 @@ export default function AppBanner() {
                 </AppBar>
                 {
                     menu
+                }
+                {
+                    sortMenu
                 }
             </Box>
             <Box sx={{ flexGrow: 1 }}>{tBar}</Box>
