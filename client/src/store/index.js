@@ -32,7 +32,8 @@ export const GlobalStoreActionType = {
     ADD_COMMENT: "ADD_COMMENT",
     PUBLISH_LIST: "PUBLISH_LIST",
     HOME: "HOME",
-    SORT_VAL: "SORT_VAL"
+    SORT_VAL: "SORT_VAL",
+    SORT_BY: "SORT_BY"
 }
 
 // WE'LL NEED THIS TO PROCESS TRANSACTIONS
@@ -230,6 +231,20 @@ function GlobalStoreContextProvider(props) {
                 });
             }
 
+            case GlobalStoreActionType.SORT_BY:{
+                return setStore({
+                    idNamePairs: store.idNamePairs,
+                    currentList: null,
+                    newListCounter: store.newListCounter,
+                    isListNameEditActive: false,
+                    isItemEditActive: false,
+                    listMarkedForDeletion: null,
+                    whichLists: store.whichLists,
+                    sortBy: payload,
+                    sortVal: store.sortVal
+                });
+            }
+
             default:
                 return store;
         }
@@ -247,6 +262,13 @@ function GlobalStoreContextProvider(props) {
         } else if (val === "com"){
             history.push("/community-lists");
         }
+    }
+
+    store.setSortBy = function(val){
+        storeReducer({
+            type: GlobalStoreActionType.SORT_BY,
+            payload: val
+        });
     }
 
     store.users = function(){

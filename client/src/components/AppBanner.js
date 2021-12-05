@@ -124,12 +124,37 @@ export default function AppBanner() {
             open={isMenuOpen2}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleLogout}>Publish Date (Newest)</MenuItem>
-            <MenuItem onClick={handleLogout}>Publish Date (Oldest)</MenuItem>
-            <MenuItem onClick={handleLogout}>Views</MenuItem>
-            <MenuItem onClick={handleLogout}>Likes</MenuItem>
-            <MenuItem onClick={handleLogout}>Dislikes</MenuItem>
+            <MenuItem onClick={sortDateN}>Publish Date (Newest)</MenuItem>
+            <MenuItem onClick={sortDateO}>Publish Date (Oldest)</MenuItem>
+            <MenuItem onClick={sortView}>Views</MenuItem>
+            <MenuItem onClick={sortDislike}>Likes</MenuItem>
+            <MenuItem onClick={sortLike}>Dislikes</MenuItem>
         </Menu>
+
+    function sortDateN() {
+        store.setSortBy("dn");
+        handleMenuClose();
+    }
+
+    function sortDateO() {
+        store.setSortBy("do");
+        handleMenuClose();
+    }
+
+    function sortView() {
+        store.setSortBy("v");
+        handleMenuClose();
+    }
+
+    function sortDislike() {
+        store.setSortBy("d");
+        handleMenuClose();
+    }
+
+    function sortLike() {
+        store.setSortBy("l");
+        handleMenuClose();
+    }
 
 
     let editToolbar = "";
