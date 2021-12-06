@@ -20,7 +20,7 @@ getLoggedIn = async (req, res) => {
 loginUser = async (req, res) => {
     console.log("In usercontroller for the login function");
     try {
-        const { email, password} = req.body;
+        const { userName, password} = req.body;
         console.log(email, password);
 
         if (!email || !password) {
@@ -34,7 +34,7 @@ loginUser = async (req, res) => {
                 .json({  errorMessage: "Wrong email or password." });
         }
 
-        const existingUser = await User.findOne({ email: email });
+        const existingUser = await User.findOne({ userName: userName });
 
         if (!existingUser){
             return res
