@@ -15,7 +15,7 @@ const Top5ListSchema = new Schema(
         usersL: {type: [String], required: true},
         usersD: {type: [String], required: true},
         uitems: {type: [String], required: true},
-        uvalues: {type: [String], required: true}
+        uvalues: {type: [Number], required: true}
     },
     { timestamps: true },
 )

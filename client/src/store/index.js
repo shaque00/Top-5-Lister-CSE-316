@@ -408,38 +408,13 @@ function GlobalStoreContextProvider(props) {
         let id = 0;
         // Check if com list of same namme exsits, if so update that list
         // otherwise create a new com list
-        let e = store.idNamePairs.filter(e => e.size !== 0 && e.name.toLowerCase() === title.toLowerCase);
+        let e = store.idNamePairs.filter(e => e.userName === "com" && e.name.toLowerCase() === title.toLowerCase);
             // we have founnd a communit list with the same name, nnow we just update it with itemms
 
-        if (e.length !== 0){if (e[0].has(text1.toLowerCase())){
-            e[0].set(text1.toLowerCase(), e[0].get(text1.toLowerCase()) + 5)
-        } else {
-            e[0].set(text1.toLowerCase(), 5);
-        }
+        if (e.length !== 0){
+            let list = e[0];
+            // update the items here
 
-        if (e[0].has(text2.toLowerCase())){
-            e[0].set(text2.toLowerCase(), e[0].get(text2.toLowerCase()) + 4)
-        } else {
-            e[0].set(text2.toLowerCase(), 4);
-        }
-
-        if (e[0].has(text3.toLowerCase())){
-            e[0].set(text3.toLowerCase(), e[0].get(text3.toLowerCase()) + 3)
-        } else {
-            e[0].set(text3.toLowerCase(), 3);
-        }
-        
-        if (e[0].has(text4.toLowerCase())){
-            e[0].set(text4.toLowerCase(), e[0].get(text4.toLowerCase()) + 2)
-        } else {
-            e[0].set(text4.toLowerCase(), 2);
-        }
-
-        if (e[0].has(text5.toLowerCase())){
-            e[0].set(text5.toLowerCase(), e[0].get(text5.toLowerCase()) + 1)
-        } else {
-            e[0].set(text5.toLowerCase(), 1);
-        }
             const response = await api.updateTop5ListById(e[0]._id, e[0]);
             if (response.data.success){
                 store.loadIdNamePairs();
@@ -448,7 +423,6 @@ function GlobalStoreContextProvider(props) {
         }
 
         // we were not able to find a community list with that name, nnow wwe have create a new com list with that nnamme and itemss
-        let m = new Map([[text1, 5],[text1, 4],[text1, 3],[text1, 2],[text1, 1]]);
         let payload = {
             name: title.toLowerCase(),
             items: ["", "", "", "", ""],
@@ -461,7 +435,8 @@ function GlobalStoreContextProvider(props) {
             comments: [],
             usersL: [],
             usersD: [],
-            cl: m
+            uitems: [text1, text2, text3, text4, text5],
+            uvalues: [5, 4, 3, 2, 1]
         };
         
         const response = await api.createTop5List(payload);
