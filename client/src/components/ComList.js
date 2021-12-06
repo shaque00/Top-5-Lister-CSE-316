@@ -172,10 +172,13 @@ function ComList(props) {
                 <Grid container>
                     <Grid item xs={6} sx={{p:1}}>
                         {
-                            idNamePair.items.map((item, index) => (
+                            idNamePair.uitems.map((item, index) => (
+                                <div>
                                 <Typography sx={{left: "5px"}}variant="h5" component="h5">
                                     {index+1}. {item}
                                 </Typography>
+                                Votes = {idNamePair.uvalues[index]}
+                                </div>
                             ))
                         }
                     </Grid>
@@ -196,9 +199,6 @@ function ComList(props) {
                     </Grid>
                 </Grid>
         </Collapse>
-                <Box>
-                    <Typography sx={{p:1}}>By: {idNamePair.userName}</Typography>
-                </Box>
                 <Grid container>
                     <Grid item xs={11}>
                     {edPub}

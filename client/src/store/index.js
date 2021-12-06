@@ -407,59 +407,60 @@ function GlobalStoreContextProvider(props) {
         store.saveEdit(text1, text2, text3, text4, text5, title);
         // Check if com list of same namme exsits, if so update that list
         // otherwise create a new com list
-        let e = store.idNamePairs.filter(e => e.userName === "com" && e.name.toLowerCase() === title.toLowerCase);
+        let e = store.idNamePairs.filter(e => e.userName === "com" && e.name.toLowerCase() === title.toLowerCase());
             // we have founnd a communit list with the same name, nnow we just update it with itemms
 
         if (e.length !== 0){
             let list = e[0];
             // update the items here
+            console.log(list.uvalues)
 
-            if (list.uitems.indexOf(text1.toLowerCase()) < -1){
-                list.vitems[list.uitems.indexOf(text1.toLowerCase())] = list.uitems.indexOf(text1.toLowerCase()) + 5;
+            if (list.uitems.indexOf(text1.toLowerCase()) > -1){
+                list.uvalues[list.uitems.indexOf(text1.toLowerCase())] = list.uvalues[list.uitems.indexOf(text1.toLowerCase())] + 5;
             } else {
                 list.uitems.push(text1.toLowerCase());
-                list.vitems.push(5);
+                list.uvalues.push(5);
             }
 
-            if (list.uitems.indexOf(text2.toLowerCase()) < -1){
-                list.vitems[list.uitems.indexOf(text2.toLowerCase())] = list.uitems.indexOf(text2.toLowerCase()) + 4;
+            if (list.uitems.indexOf(text2.toLowerCase()) > -1){
+                list.uvalues[list.uitems.indexOf(text2.toLowerCase())] = list.uvalues[list.uitems.indexOf(text2.toLowerCase())] + 4;
             } else {
                 list.uitems.push(text2.toLowerCase());
-                list.vitems.push(4);
+                list.uvalues.push(4);
             }
 
-            if (list.uitems.indexOf(text3.toLowerCase()) < -1){
-                list.vitems[list.uitems.indexOf(text3.toLowerCase())] = list.uitems.indexOf(text3.toLowerCase()) + 3;
+            if (list.uitems.indexOf(text3.toLowerCase()) > -1){
+                list.uvalues[list.uitems.indexOf(text3.toLowerCase())] = list.uvalues[list.uitems.indexOf(text3.toLowerCase())] + 3;
             } else {
                 list.uitems.push(text3.toLowerCase());
-                list.vitems.push(3);
+                list.uvalues.push(3);
             }
 
-            if (list.uitems.indexOf(text4.toLowerCase()) < -1){
-                list.vitems[list.uitems.indexOf(text4.toLowerCase())] = list.uitems.indexOf(text4.toLowerCase()) + 2;
+            if (list.uitems.indexOf(text4.toLowerCase()) > -1){
+                list.uvalues[list.uitems.indexOf(text4.toLowerCase())] = list.uvalues[list.uitems.indexOf(text4.toLowerCase())] + 2;
             } else {
                 list.uitems.push(text4.toLowerCase());
-                list.vitems.push(2);
+                list.uvalues.push(2);
             }
 
-            if (list.uitems.indexOf(text5.toLowerCase()) < -1){
-                list.vitems[list.uitems.indexOf(text5.toLowerCase())] = list.uitems.indexOf(text5.toLowerCase()) + 1;
+            if (list.uitems.indexOf(text5.toLowerCase()) > -1){
+                list.uvalues[list.uitems.indexOf(text5.toLowerCase())] = list.uvalues[list.uitems.indexOf(text5.toLowerCase())] + 1;
             } else {
                 list.uitems.push(text5.toLowerCase());
-                list.vitems.push(1);
+                list.uvalues.push(1);
             }
 
             // Sort the items, to make it easier
             let l2 = [];
             for (let j = 0; j < list.uitems.length; j++) 
-                l2.push({'name': store.vitems[j], 'age': store.vutems[j]});
+                l2.push({'name': list.uvalues[j], 'age': list.uitems[j]});
             l2.sort(function(a, b) {
-                return ((a.name < b.name) ? -1 : ((a.name == b.name) ? 0 : 1));
+                return ((a.name < b.name) ? 1 : ((a.name == b.name) ? 0 : -1));
             });
 
             for (let k = 0; k < list.uitems.length; k++) {
-                list.vitems[k] = list[k].name;
-                list.uitems[k] = list[k].age;
+                list.uvalues[k] = l2[k].name;
+                list.uitems[k] = l2[k].age;
             }
 
             const response = await api.updateTop5ListById(list._id, list);
