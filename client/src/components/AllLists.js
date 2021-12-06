@@ -43,7 +43,19 @@ const AllLists = () => {
                         if (store.sortBy === "do"){
                         
                         }if (store.sortBy === "dn"){
-                        
+                            if (l1.date === "edit" && l2.date !== "edit"){
+                                return -1;
+                            }
+
+                            if (l2.date === "edit" && l1.date !== "edit"){
+                                return 1;
+                            }
+
+                            if (l1.date === "edit" && l2.date === "edit"){
+                                return 1;
+                            }
+
+                            return new Date(l1.date) - new Date(l2.date);
                         }
                     })
                     .map((pair) => (
