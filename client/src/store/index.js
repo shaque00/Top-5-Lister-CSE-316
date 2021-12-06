@@ -503,7 +503,8 @@ function GlobalStoreContextProvider(props) {
             comments: [],
             usersL: [],
             usersD: [],
-            cl: m
+            uitems: [],
+            uvalues: []
         };
         console.log("success");
         console.log(auth.user.email);

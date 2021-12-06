@@ -60,7 +60,8 @@ updateTop5List = async (req, res) => {
         top5List.usersL = body.usersL;
         top5List.usersD = body.usersD;
         top5List.date = body.date;
-        top5List.cl = body.cl;
+        top5List.uitems = body.uitems;
+        top5List.uvalues = body.uvalues;
 
         top5List
             .save()
@@ -146,7 +147,8 @@ getTop5ListPairs = async (req, res) => {
                     comments: list.comments,
                     usersL: list.usersL,
                     usersD: list.usersD,
-                    cl: list.cl
+                    uitems: list.uitems,
+                    uvalues: list.uvalues
                 };
                 pairs.push(pair);
             }
