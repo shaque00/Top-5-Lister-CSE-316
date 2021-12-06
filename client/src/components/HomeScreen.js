@@ -34,7 +34,47 @@ const HomeScreen = () => {
             <Grid container spacing={1} direction="row" sx={{pl:3}}>
                 {
                 store.idNamePairs.filter(pair => pair.email === auth.user.email)
-                    .filter(pair => pair.name.toLowerCase().startsWith(store.sortVal.toLowerCase())).map((pair) => (
+                    .filter(pair => pair.name.toLowerCase().startsWith(store.sortVal.toLowerCase())).sort(function(l1, l2){
+                        if (store.sortBy === "l"){
+                            return l2.likes - l1.likes;
+                        }
+                        if (store.sortBy === "d"){
+                            return l2.dislikes - l1.dislikes;
+                        }
+                        if (store.sortBy === "v"){
+                            return l2.views - l1.views;
+                        }
+                        if (store.sortBy === "do"){
+                            if (l1.date === "edit" && l2.date !== "edit"){
+                                return 1;
+                            }
+
+                            if (l2.date === "edit" && l1.date !== "edit"){
+                                return -1;
+                            }
+
+                            if (l1.date === "edit" && l2.date === "edit"){
+                                return 1;
+                            }
+
+                            return new Date(l2.date) - new Date(l1.date);
+
+                        }if (store.sortBy === "dn"){
+                            if (l1.date === "edit" && l2.date !== "edit"){
+                                return 1;
+                            }
+
+                            if (l2.date === "edit" && l1.date !== "edit"){
+                                return -1;
+                            }
+
+                            if (l1.date === "edit" && l2.date === "edit"){
+                                return 1;
+                            }
+
+                            return new Date(l1.date) - new Date(l2.date);
+                        }
+                    }).map((pair) => (
                     <ListCard
                         key={pair._id}
                         idNamePair={pair}

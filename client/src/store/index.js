@@ -396,10 +396,18 @@ function GlobalStoreContextProvider(props) {
         store.closeCurrentList();
     }
 
-    store.publishList = function(text1, text2, text3, text4, text5, title){
+    store.publishList = async function(text1, text2, text3, text4, text5, title){
         console.log("publish");
         store.currentList.date = new Date().toLocaleDateString();
         store.saveEdit(text1, text2, text3, text4, text5, title);
+        // Check if com list of same namme exsits, if so update that list
+        // otherwise create a new com list
+        store.idNamePairs.filter(e => e.size !== 0 && e.name.toLowerCase() === title.toLowerCase).map((e) => {
+            // we have founnd a communit list with the same name, nnow we just update it with itemms
+        });
+
+        // we were not able to find a community list with that name, nnow wwe have create a new com list with that nnamme and itemss
+        
     }
 
     // THIS FUNCTION PROCESSES CLOSING THE CURRENTLY LOADED LIST
@@ -429,7 +437,7 @@ function GlobalStoreContextProvider(props) {
             comments: [],
             usersL: [],
             usersD: [],
-            cl: {}
+            cl: new Map()
         };
         console.log("success");
         console.log(auth.user.email);

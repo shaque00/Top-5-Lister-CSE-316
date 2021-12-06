@@ -32,23 +32,36 @@ const AllLists = () => {
                 store.idNamePairs.filter(pair => pair.date !== "edit")
                     .filter(pair => pair.name.toLowerCase().startsWith(store.sortVal.toLowerCase())).sort(function(l1, l2){
                         if (store.sortBy === "l"){
-                            return l1.likes - l2.likes;
+                            return l2.likes - l1.likes;
                         }
                         if (store.sortBy === "d"){
-                            return l1.dislikes - l2.dislikes;
+                            return l2.dislikes - l1.dislikes;
                         }
                         if (store.sortBy === "v"){
-                            return l1.views - l2.views;
+                            return l2.views - l1.views;
                         }
                         if (store.sortBy === "do"){
-                        
-                        }if (store.sortBy === "dn"){
                             if (l1.date === "edit" && l2.date !== "edit"){
-                                return -1;
+                                return 1;
                             }
 
                             if (l2.date === "edit" && l1.date !== "edit"){
+                                return -1;
+                            }
+
+                            if (l1.date === "edit" && l2.date === "edit"){
                                 return 1;
+                            }
+
+                            return new Date(l2.date) - new Date(l1.date);
+
+                        }if (store.sortBy === "dn"){
+                            if (l1.date === "edit" && l2.date !== "edit"){
+                                return 1;
+                            }
+
+                            if (l2.date === "edit" && l1.date !== "edit"){
+                                return -1;
                             }
 
                             if (l1.date === "edit" && l2.date === "edit"){
