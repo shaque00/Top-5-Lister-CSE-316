@@ -21,9 +21,8 @@ loginUser = async (req, res) => {
     console.log("In usercontroller for the login function");
     try {
         const { userName, password} = req.body;
-        console.log(email, password);
 
-        if (!email || !password) {
+        if (!userName || !password) {
             return res
                 .status(400)
                 .json({ errorMessage: "Please enter all required fields." });

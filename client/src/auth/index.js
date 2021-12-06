@@ -123,7 +123,6 @@ function AuthContextProvider(props) {
 
     auth.loginUser = async function(userData, store){
         console.log("Attempting to Login");
-
         let response;
         let error;
 

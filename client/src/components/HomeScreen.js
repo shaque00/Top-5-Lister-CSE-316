@@ -21,7 +21,7 @@ const HomeScreen = () => {
 
     useEffect(() => {
         store.loadIdNamePairs();
-    }, []);
+    }, [store.idNamePairs]);
 
     function handleCreateNewList() {
         console.log("Asd");
