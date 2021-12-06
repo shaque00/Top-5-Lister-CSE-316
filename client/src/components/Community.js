@@ -24,12 +24,12 @@ const Community = () => {
     console.log("all lists, ", store.sortVal);
 
     let listCard = "";
-    console.log(store.idNamePairs);
+    console.log("in community", store.idNamePairs[1].cl);
     if (store && store.sortVal !== "") {
         listCard = 
             <Grid container spacing={1} direction="row" sx={{pl:3}}>
             {
-                store.idNamePairs.filter(pair => pair.userName === store.sortVal).filter(pair => pair.date !== "edit").sort(function(l1, l2){
+                store.idNamePairs.filter(pair => pair.userName === "com").sort(function(l1, l2){
                     if (store.sortBy === "l"){
                         return l2.likes - l1.likes;
                     }

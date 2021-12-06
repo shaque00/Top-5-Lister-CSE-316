@@ -396,6 +396,10 @@ function GlobalStoreContextProvider(props) {
         store.closeCurrentList();
     }
 
+    store.community = function (){
+        store.setLists("com");
+    }
+
     store.publishList = async function(text1, text2, text3, text4, text5, title){
         console.log("publish");
         store.currentList.date = new Date().toLocaleDateString();
@@ -406,37 +410,36 @@ function GlobalStoreContextProvider(props) {
         // otherwise create a new com list
         let e = store.idNamePairs.filter(e => e.size !== 0 && e.name.toLowerCase() === title.toLowerCase);
             // we have founnd a communit list with the same name, nnow we just update it with itemms
-            if (e[0].has(text1.toLowerCase())){
-                e[0].set(text1.toLowerCase(), e[0].get(text1.toLowerCase()) + 5)
-            } else {
-                e[0].set(text1.toLowerCase(), 5);
-            }
 
-            if (e[0].has(text2.toLowerCase())){
-                e[0].set(text2.toLowerCase(), e[0].get(text2.toLowerCase()) + 4)
-            } else {
-                e[0].set(text2.toLowerCase(), 4);
-            }
+        if (e.length !== 0){if (e[0].has(text1.toLowerCase())){
+            e[0].set(text1.toLowerCase(), e[0].get(text1.toLowerCase()) + 5)
+        } else {
+            e[0].set(text1.toLowerCase(), 5);
+        }
 
-            if (e[0].has(text3.toLowerCase())){
-                e[0].set(text3.toLowerCase(), e[0].get(text3.toLowerCase()) + 3)
-            } else {
-                e[0].set(text3.toLowerCase(), 3);
-            }
-            
-            if (e[0].has(text4.toLowerCase())){
-                e[0].set(text4.toLowerCase(), e[0].get(text4.toLowerCase()) + 2)
-            } else {
-                e[0].set(text4.toLowerCase(), 2);
-            }
+        if (e[0].has(text2.toLowerCase())){
+            e[0].set(text2.toLowerCase(), e[0].get(text2.toLowerCase()) + 4)
+        } else {
+            e[0].set(text2.toLowerCase(), 4);
+        }
 
-            if (e[0].has(tex5.toLowerCase())){
-                e[0].set(text5.toLowerCase(), e[0].get(text5.toLowerCase()) + 1)
-            } else {
-                e[0].set(text5.toLowerCase(), 1);
-            }
+        if (e[0].has(text3.toLowerCase())){
+            e[0].set(text3.toLowerCase(), e[0].get(text3.toLowerCase()) + 3)
+        } else {
+            e[0].set(text3.toLowerCase(), 3);
+        }
+        
+        if (e[0].has(text4.toLowerCase())){
+            e[0].set(text4.toLowerCase(), e[0].get(text4.toLowerCase()) + 2)
+        } else {
+            e[0].set(text4.toLowerCase(), 2);
+        }
 
-        if (e.length !== 0){
+        if (e[0].has(text5.toLowerCase())){
+            e[0].set(text5.toLowerCase(), e[0].get(text5.toLowerCase()) + 1)
+        } else {
+            e[0].set(text5.toLowerCase(), 1);
+        }
             const response = await api.updateTop5ListById(e[0]._id, e[0]);
             if (response.data.success){
                 store.loadIdNamePairs();
@@ -449,8 +452,8 @@ function GlobalStoreContextProvider(props) {
         let payload = {
             name: title.toLowerCase(),
             items: ["", "", "", "", ""],
-            ownerEmail: auth.user.email,
-            userName: auth.user.userName,
+            ownerEmail: "com",
+            userName: "com",
             likes: 0,
             dislikes: 0,
             views: 0,

@@ -156,6 +156,10 @@ export default function AppBanner() {
         handleMenuClose();
     }
 
+    function goToCommunity(){
+        store.community();
+    }
+
 
     let editToolbar = "";
     let menu = loggedOutMenu;
@@ -230,7 +234,7 @@ export default function AppBanner() {
                                 aria-label="account of current user"
                                 aria-controls={menuId}
                                 aria-haspopup="true"
-                                onClick={handleProfileMenuOpen}
+                                onClick={goToCommunity}
                                 color="inherit"
                             >
                                 <FunctionsIcon style = {{fontSize: "45px", color: "black"  }}/>
