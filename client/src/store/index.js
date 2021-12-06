@@ -394,6 +394,7 @@ function GlobalStoreContextProvider(props) {
         store.updateCurrentList();
         store.loadIdNamePairs();
         store.closeCurrentList();
+        history.push('/');
     }
 
     store.community = function (){
@@ -404,11 +405,9 @@ function GlobalStoreContextProvider(props) {
         console.log("publish");
         store.currentList.date = new Date().toLocaleDateString();
         store.saveEdit(text1, text2, text3, text4, text5, title);
-        let set = false;
-        let id = 0;
         // Check if com list of same namme exsits, if so update that list
         // otherwise create a new com list
-        let e = store.idNamePairs.filter(e => e.userName === "com" && e.name.toLowerCase() === title.toLowerCase);
+        /*let e = store.idNamePairs.filter(e => e.userName === "com" && e.name.toLowerCase() === title.toLowerCase);
             // we have founnd a communit list with the same name, nnow we just update it with itemms
 
         if (e.length !== 0){
@@ -445,7 +444,7 @@ function GlobalStoreContextProvider(props) {
             tps.clearAllTransactions();
             let newList = response.data.top5List;
             store.loadIdNamePairs();
-        }
+        }*/
 
 
     }

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { GlobalStoreContext } from '../store'
 import ListCard from './ListCard.js'
-import { Fab, Typography } from '@mui/material'
+import { Fab, stepperClasses, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import List from '@mui/material/List';
 import AuthContext from '../auth'
@@ -21,56 +21,57 @@ const Community = () => {
     useEffect(() => {
         store.loadIdNamePairs();
     }, []);
-    console.log("all lists, ", store.sortVal);
+    //console.log("all lists, ", store.sortVal);
 
     let listCard = "";
-    console.log("in community", store.idNamePairs[1].cl);
-    if (store && store.sortVal !== "") {
+    //console.log(store.idNamePairs);
+    if (store) {
         listCard = 
             <Grid container spacing={1} direction="row" sx={{pl:3}}>
             {
-                store.idNamePairs.filter(pair => pair.userName === "com").sort(function(l1, l2){
-                    if (store.sortBy === "l"){
-                        return l2.likes - l1.likes;
-                    }
-                    if (store.sortBy === "d"){
-                        return l2.dislikes - l1.dislikes;
-                    }
-                    if (store.sortBy === "v"){
-                        return l2.views - l1.views;
-                    }
-                    if (store.sortBy === "do"){
-                        if (l1.date === "edit" && l2.date !== "edit"){
-                            return 1;
+                store.idNamePairs
+                    .filter(pair => pair.name.toLowerCase().startsWith(store.sortVal.toLowerCase())).sort(function(l1, l2){
+                        if (store.sortBy === "l"){
+                            return l2.likes - l1.likes;
                         }
-
-                        if (l2.date === "edit" && l1.date !== "edit"){
-                            return -1;
+                        if (store.sortBy === "d"){
+                            return l2.dislikes - l1.dislikes;
                         }
-
-                        if (l1.date === "edit" && l2.date === "edit"){
-                            return 1;
+                        if (store.sortBy === "v"){
+                            return l2.views - l1.views;
                         }
+                        if (store.sortBy === "do"){
+                            if (l1.date === "edit" && l2.date !== "edit"){
+                                return 1;
+                            }
 
-                        return new Date(l2.date) - new Date(l1.date);
+                            if (l2.date === "edit" && l1.date !== "edit"){
+                                return -1;
+                            }
 
-                    }if (store.sortBy === "dn"){
-                        if (l1.date === "edit" && l2.date !== "edit"){
-                            return 1;
+                            if (l1.date === "edit" && l2.date === "edit"){
+                                return 1;
+                            }
+
+                            return new Date(l2.date) - new Date(l1.date);
+
+                        }if (store.sortBy === "dn"){
+                            if (l1.date === "edit" && l2.date !== "edit"){
+                                return 1;
+                            }
+
+                            if (l2.date === "edit" && l1.date !== "edit"){
+                                return -1;
+                            }
+
+                            if (l1.date === "edit" && l2.date === "edit"){
+                                return 1;
+                            }
+
+                            return new Date(l1.date) - new Date(l2.date);
                         }
-
-                        if (l2.date === "edit" && l1.date !== "edit"){
-                            return -1;
-                        }
-
-                        if (l1.date === "edit" && l2.date === "edit"){
-                            return 1;
-                        }
-
-                        return new Date(l1.date) - new Date(l2.date);
-                    }
-                })
-                     .map((pair) => (
+                    })
+                    .map((pair) => (
                     <ListCard
                         key={pair._id}
                         idNamePair={pair}
