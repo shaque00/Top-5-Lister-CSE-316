@@ -29,7 +29,7 @@ const AllLists = () => {
         listCard = 
             <Grid container spacing={1} direction="row" sx={{pl:3}}>
             {
-                store.idNamePairs.filter(pair => pair.date !== "edit")
+                store.idNamePairs.filter(pair => pair.date !== "edit" && pair.cl.size === 0)
                     .filter(pair => pair.name.toLowerCase().startsWith(store.sortVal.toLowerCase())).sort(function(l1, l2){
                         if (store.sortBy === "l"){
                             return l2.likes - l1.likes;

@@ -441,9 +441,27 @@ function GlobalStoreContextProvider(props) {
             if (response.data.success){
                 store.loadIdNamePairs();
             }
+            return;
         }
 
         // we were not able to find a community list with that name, nnow wwe have create a new com list with that nnamme and itemss
+        let m = new Map([[text1, 5],[text1, 4],[text1, 3],[text1, 2],[text1, 1]]);
+        let payload = {
+            name: title.toLowerCase(),
+            items: ["", "", "", "", ""],
+            ownerEmail: auth.user.email,
+            userName: auth.user.userName,
+            likes: 0,
+            dislikes: 0,
+            views: 0,
+            date: "edit", 
+            comments: [],
+            usersL: [],
+            usersD: [],
+            cl: m
+        };
+
+
 
     }
 
