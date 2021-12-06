@@ -437,7 +437,7 @@ function GlobalStoreContextProvider(props) {
             }
 
         if (e.length !== 0){
-            let response = await api.updateTop5ListById(e[0]._id, e[0]);
+            const response = await api.updateTop5ListById(e[0]._id, e[0]);
             if (response.data.success){
                 store.loadIdNamePairs();
             }
@@ -460,7 +460,14 @@ function GlobalStoreContextProvider(props) {
             usersD: [],
             cl: m
         };
-
+        
+        const response = await api.createTop5List(payload);
+        if (response.data.success) {
+            console.log("success");
+            tps.clearAllTransactions();
+            let newList = response.data.top5List;
+            store.loadIdNamePairs();
+        }
 
 
     }
