@@ -13,7 +13,8 @@ const Top5ListSchema = new Schema(
         date: {type: String, required: true},
         comments: {type: [String], required: true},
         usersL: {type: [String], required: true},
-        usersD: {type: [String], required: true}
+        usersD: {type: [String], required: true},
+        cl: {type: Map, of: Number, required: true}
     },
     { timestamps: true },
 )

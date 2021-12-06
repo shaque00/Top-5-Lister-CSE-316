@@ -428,7 +428,8 @@ function GlobalStoreContextProvider(props) {
             date: "edit", 
             comments: [],
             usersL: [],
-            usersD: []
+            usersD: [],
+            cl: {}
         };
         console.log("success");
         console.log(auth.user.email);
