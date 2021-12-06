@@ -14,6 +14,7 @@ import DeleteModal from './DeleteModal'
 import Community from './Community'
 import AllLists from './AllLists'
 import UserLists from './UserLists'
+import ComList from './ComList'
 /*
     This serves as a module so that we can import
     all the other components as we wish.
@@ -36,5 +37,6 @@ export {
     DeleteModal,
     Community,
     AllLists,
-    UserLists
+    UserLists,
+    ComList
 }

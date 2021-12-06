@@ -9,6 +9,7 @@ import DeleteModal from './DeleteModal'
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import { Grid } from '@mui/material';
+import  ComList from './ComList';
 /*
     This React component lists all the top5 lists in the UI.
     
@@ -72,7 +73,7 @@ const Community = () => {
                         }
                     })
                     .map((pair) => (
-                    <ListCard
+                    <ComList
                         key={pair._id}
                         idNamePair={pair}
                         selected={false}
