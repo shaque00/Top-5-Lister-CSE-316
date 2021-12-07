@@ -415,35 +415,35 @@ function GlobalStoreContextProvider(props) {
             // update the items here
             console.log(list.uvalues)
 
-            if (list.uitems.indexOf(text1.toLowerCase()) > -1){
+            if (list.uitems.indexOf(text1.toLowerCase()) !== -1){
                 list.uvalues[list.uitems.indexOf(text1.toLowerCase())] = list.uvalues[list.uitems.indexOf(text1.toLowerCase())] + 5;
             } else {
                 list.uitems.push(text1.toLowerCase());
                 list.uvalues.push(5);
             }
 
-            if (list.uitems.indexOf(text2.toLowerCase()) > -1){
+            if (list.uitems.indexOf(text2.toLowerCase()) !== -1){
                 list.uvalues[list.uitems.indexOf(text2.toLowerCase())] = list.uvalues[list.uitems.indexOf(text2.toLowerCase())] + 4;
             } else {
                 list.uitems.push(text2.toLowerCase());
                 list.uvalues.push(4);
             }
 
-            if (list.uitems.indexOf(text3.toLowerCase()) > -1){
+            if (list.uitems.indexOf(text3.toLowerCase()) !== -1){
                 list.uvalues[list.uitems.indexOf(text3.toLowerCase())] = list.uvalues[list.uitems.indexOf(text3.toLowerCase())] + 3;
             } else {
                 list.uitems.push(text3.toLowerCase());
                 list.uvalues.push(3);
             }
 
-            if (list.uitems.indexOf(text4.toLowerCase()) > -1){
+            if (list.uitems.indexOf(text4.toLowerCase()) !== -1){
                 list.uvalues[list.uitems.indexOf(text4.toLowerCase())] = list.uvalues[list.uitems.indexOf(text4.toLowerCase())] + 2;
             } else {
                 list.uitems.push(text4.toLowerCase());
                 list.uvalues.push(2);
             }
 
-            if (list.uitems.indexOf(text5.toLowerCase()) > -1){
+            if (list.uitems.indexOf(text5.toLowerCase()) !== -1){
                 list.uvalues[list.uitems.indexOf(text5.toLowerCase())] = list.uvalues[list.uitems.indexOf(text5.toLowerCase())] + 1;
             } else {
                 list.uitems.push(text5.toLowerCase());
@@ -483,7 +483,7 @@ function GlobalStoreContextProvider(props) {
             comments: [],
             usersL: [],
             usersD: [],
-            uitems: [text1, text2, text3, text4, text5],
+            uitems: [text1.toLowerCase(), text2.toLowerCase(), text3.toLowerCase(), text4.toLowerCase(), text5.toLowerCase()],
             uvalues: [5, 4, 3, 2, 1]
         };
         

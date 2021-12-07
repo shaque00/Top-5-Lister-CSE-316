@@ -178,7 +178,14 @@ function AuthContextProvider(props) {
                         user: response.data.user
                     }
                 })
-                history.push("/");
+                console.log("trying to logou");
+        authReducer({
+            type: AuthActionType.LOGOUT_USER,
+            payload: {
+                user: null
+            }
+        })
+                history.push("/login");
                 store.loadIdNamePairs();
             }
         } else {

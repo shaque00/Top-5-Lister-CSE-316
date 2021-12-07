@@ -132,7 +132,7 @@ registerUser = async (req, res) => {
             firstName, lastName, email, passwordHash, userName
         });
         const savedUser = await newUser.save();
-
+        
         // LOGIN THE USER
         const token = auth.signToken(savedUser);
 
