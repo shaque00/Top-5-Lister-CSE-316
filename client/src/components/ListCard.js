@@ -170,10 +170,10 @@ function ListCard(props) {
                 </Grid>
                 <Collapse in={open}>
                 <Grid container>
-                    <Grid item xs={6} sx={{p:1}}>
+                    <Grid style={{backgroundColor:"#DCAE96"}} item xs={6} sx={{borderRadius:1,p:1}}>
                         {
                             idNamePair.items.map((item, index) => (
-                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
+                                <Typography sx={{left: "5px"}}variant="h3" component="h3">
                                     {index+1}. {item}
                                 </Typography>
                             ))
@@ -181,12 +181,15 @@ function ListCard(props) {
                     </Grid>
                     <Grid container direction={"row"} xs={6}>
                         
-                        <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:100, overflow: 'auto'}}>
+                    <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:200, overflow: 'auto'}}>
                         {
                             idNamePair.comments.slice(0).reverse().map((item, index) => (
-                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
-                                    {item}
+                                <Box sx={{p:1}}style={{color: "#DCAE96", backgroundColor: "#FFFDD0"}}>
+                                    {item.split(":")[0]}
+                                <Typography style={{backgroundColor: "#FFFDD0", color:"black"}} sx={{left: "5px", p:0}}variant="h5" component="h5">
+                                    {item.split(":")[1]}
                                 </Typography>
+                                </Box>
                             ))
                         }
                         </Paper></Grid>
