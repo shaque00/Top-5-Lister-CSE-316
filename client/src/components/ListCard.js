@@ -173,7 +173,7 @@ function ListCard(props) {
                     <Grid style={{backgroundColor:"#DCAE96"}} item xs={6} sx={{borderRadius:1,p:1}}>
                         {
                             idNamePair.items.map((item, index) => (
-                                <Typography sx={{left: "5px"}}variant="h3" component="h3">
+                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
                                     {index+1}. {item}
                                 </Typography>
                             ))
@@ -181,7 +181,7 @@ function ListCard(props) {
                     </Grid>
                     <Grid container direction={"row"} xs={6}>
                         
-                    <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:200, overflow: 'auto'}}>
+                    <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:100, overflow: 'auto'}}>
                         {
                             idNamePair.comments.slice(0).reverse().map((item, index) => (
                                 <Box sx={{p:1}}style={{color: "#DCAE96", backgroundColor: "#FFFDD0"}}>
@@ -215,107 +215,7 @@ function ListCard(props) {
                     
                 </Grid>
         </Grid>
-    /*<List>
-        <Divider />
-        <ListItem
-            disabled={store.isListNameEditActive} 
-            id={idNamePair._id}
-            key={idNamePair._id}
-            sx={{ marginTop: '0px', display: 'flex', pl: 1, pt: 0 , backgroundColor: "white"}}
-            button={false}
-            style={{
-                fontSize: '20pt',
-                width: '100%',
-            }}
-        >
-
-                <Box sx={{ p: 0, flexGrow: 1 }}>{idNamePair.name}</Box>
-                <Box sx={{ p: 1 }}>
-                    <IconButton onClick={handleToggleEdit} aria-label='edit'>
-                        <ThumbUpIcon style={{fontSize:'20pt'}} />
-                    </IconButton>
-                    {idNamePair.likes}
-                </Box>
-                <Box sx={{ p: 1 }}>
-                    <IconButton onClick={handleToggleEdit} aria-label='edit'>
-                        <ThumbDownIcon style={{fontSize:'20pt'}} />
-                    </IconButton>
-                    {idNamePair.dislikes}
-                </Box>
-                <Divider />
-                <Box sx={{ p: 1 }}>
-                    <IconButton onClick={(event) => {
-                        handleDeleteList(event, idNamePair._id)
-                    }} aria-label='delete'>
-                        <DeleteIcon style={{fontSize:'20pt'}} />
-                    </IconButton>
-                </Box>
-                
-        </ListItem>
-        <Collapse in={open}>
-                <Grid container>
-                    <Grid item xs={6} sx={{p:1}}>
-                        {
-                            idNamePair.items.map((item, index) => (
-                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
-                                    {index+1}. {item}
-                                </Typography>
-                            ))
-                        }
-                    </Grid>
-                    <Grid container direction={"row"} xs={6}>
-                        
-                        <Grid item sx={{p:1}} xs={12}><Paper style={{maxHeight:100, overflow: 'auto'}}>
-                        {
-                            idNamePair.comments.slice(0).reverse().map((item, index) => (
-                                <Typography sx={{left: "5px"}}variant="h5" component="h5">
-                                    {item}
-                                </Typography>
-                            ))
-                        }
-                        </Paper></Grid>
-                        <Grid item sx={{ flexGrow: 1,p:1 }}>                        
-                            {comment}
-                        </Grid>
-                    </Grid>
-                </Grid>
-        </Collapse>
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>  
-                <Box sx={{ p: 1, display: 'flex', flexGrow: 1, backgroundColor: "white" }}>
-                    {edPub}
-                </Box>
-                <Box>
-                    <Typography sx={{p: 1}}>
-                        Views: {idNamePair.views}
-                    </Typography>
-                </Box>
-                <Box sx={{ backgroundColor: "white" }}>
-                    <IconButton onClick={handleClick} aria-label='delete'>
-                        {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                    </IconButton>
-                </Box>
-            </Box>
-        </List>*/
-
-    if (editActive) {
-        cardElement =
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                id={"list-" + idNamePair._id}
-                label="Top 5 List Name"
-                name="name"
-                autoComplete="Top 5 List Name"
-                className='list-card'
-                onKeyPress={handleKeyPress}
-                onChange={handleUpdateText}
-                defaultValue={idNamePair.name}
-                inputProps={{style: {fontSize: 48}}}
-                InputLabelProps={{style: {fontSize: 24}}}
-                autoFocus
-            />
-    }
+    
     return (
         cardElement
     );
