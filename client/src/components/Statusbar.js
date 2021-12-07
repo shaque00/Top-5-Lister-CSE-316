@@ -37,9 +37,28 @@ function Statusbar() {
                 Create New List
             </Box>;
         }
+
+    let u = "";
+    if (store.whichLists === "users"){
+        u = "User Lists";
+        if (store.sortVal != ""){
+            u = store.sortVal + "'s Lists";
+        }
+    }
+    if (store.whichLists === "all"){
+        u = "All Lists";
+        if (store.sortVal != ""){
+            u = store.sortVal + "Lists";
+        }
+    }
+    if (store.whichLists === "com"){
+        u = "Community Lists"
+    }
+    
     return (
         <div id="top5-statusbar">
             {con}
+            {u}
         </div>
     );
 }
